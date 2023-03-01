@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc_auth/login_bloc.dart';
@@ -7,134 +5,6 @@ import '../bloc_auth/login_bloc.dart';
 class LoginPage extends StatelessWidget {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     body: BlocBuilder<LoginBloc, LoginState>(
-  //       builder: (context, state) {
-  //         return Container(
-  //           decoration: BoxDecoration(
-  //             image: DecorationImage(
-  //               image: AssetImage('assets/images/image_screen.jpg'),
-  //               fit: BoxFit.cover,
-  //             ),
-  //           ),
-  //           child: Center(
-  //             child: Container(
-  //               decoration: BoxDecoration(
-  //                 color: Colors.white,
-  //                 borderRadius: BorderRadius.circular(10.0),
-  //                 boxShadow: [
-  //                   BoxShadow(
-  //                     color: Colors.grey.withOpacity(0.5),
-  //                     spreadRadius: 5,
-  //                     blurRadius: 7,
-  //                     offset: Offset(0, 3),
-  //                   ),
-  //                 ],
-  //               ),
-  //               width: 300,
-  //               height: 300,
-  //               child: Padding(
-  //                 padding: EdgeInsets.all(16),
-  //                 child: Form(
-  //                   child: Column(
-  //                     mainAxisAlignment: MainAxisAlignment.center,
-  //                     children: [
-  //                       Container(
-  //                         decoration: BoxDecoration(
-  //                           color: Colors.white,
-  //                           borderRadius: BorderRadius.circular(25),
-  //                           boxShadow: [
-  //                             BoxShadow(
-  //                               color: Colors.grey.withOpacity(0.5),
-  //                               spreadRadius: 2,
-  //                               blurRadius: 5,
-  //                               offset: Offset(0, 3),
-  //                             ),
-  //                           ],
-  //                         ),
-  //                         child: TextFormField(
-  //                           controller: _emailController,
-  //                           decoration: InputDecoration(
-  //                             labelText: 'Email',
-  //                             contentPadding: EdgeInsets.symmetric(
-  //                                 horizontal: 16, vertical: 12),
-  //                             border: InputBorder.none,
-  //                           ),
-  //                           keyboardType: TextInputType.emailAddress,
-  //                         ),
-  //                       ),
-  //                       SizedBox(height: 16),
-  //                       Container(
-  //                         decoration: BoxDecoration(
-  //                           color: Colors.white,
-  //                           borderRadius: BorderRadius.circular(25),
-  //                           boxShadow: [
-  //                             BoxShadow(
-  //                               color: Colors.grey.withOpacity(0.5),
-  //                               spreadRadius: 2,
-  //                               blurRadius: 5,
-  //                               offset: Offset(0, 3),
-  //                             ),
-  //                           ],
-  //                         ),
-  //                         child: TextFormField(
-  //                           controller: _passwordController,
-  //                           decoration: InputDecoration(
-  //                             labelText: 'Password',
-  //                             contentPadding: EdgeInsets.symmetric(
-  //                                 horizontal: 16, vertical: 12),
-  //                             border: InputBorder.none,
-  //                           ),
-  //                           obscureText: true,
-  //                         ),
-  //                       ),
-  //                       SizedBox(height: 16),
-  //                       Container(
-  //                         decoration: BoxDecoration(
-  //                           borderRadius: BorderRadius.circular(8),
-  //                           boxShadow: [
-  //                             BoxShadow(
-  //                               color: Colors.grey.withOpacity(0.5),
-  //                               spreadRadius: 2,
-  //                               blurRadius: 5,
-  //                               offset: Offset(0, 3),
-  //                             ),
-  //                           ],
-  //                         ),
-  //                         child: ElevatedButton(
-  //                           child: Text('Login'),
-  //                           onPressed: () {
-  //                             BlocProvider.of<LoginBloc>(context).add(
-  //                               LoginButtonPressed(
-  //                                 username: _emailController.text,
-  //                                 password: _passwordController.text,
-  //                               ),
-  //                             );
-  //                           },
-  //                           style: ElevatedButton.styleFrom(
-  //                             primary: Colors.red,
-  //                             padding: EdgeInsets.symmetric(
-  //                                 horizontal: 16, vertical: 12),
-  //                             shape: RoundedRectangleBorder(
-  //                               borderRadius: BorderRadius.circular(8),
-  //                             ),
-  //                           ),
-  //                         ),
-  //                       ),
-  //                     ],
-  //                   ),
-  //                 ),
-  //               ),
-  //             ),
-  //           ),
-  //         );
-  //       },
-  //     ),
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -254,7 +124,7 @@ class LoginPage extends StatelessWidget {
                           onPressed: () {
                             BlocProvider.of<LoginBloc>(context).add(
                               LoginButtonPressed(
-                                username: _emailController.text,
+                                email: _emailController.text,
                                 password: _passwordController.text,
                               ),
                             );
