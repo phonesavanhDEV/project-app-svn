@@ -139,26 +139,50 @@
 //   }
 // }
 
+// import 'package:flutter/material.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'auth/services/authentication_service.dart';
+// import 'auth/pages/login_page.dart';
+
+// void main() {
+//   runApp(MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   final UserApi userApi = UserApi(
+//       'dop_v1_691bef8a1f66824802df6d8bb6658afe08281c054337a7a4fe79da32204f1a14');
+//   final AuthenticationService authenticationService =
+//       AuthenticationService(userApi);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       title: 'Flutter BLoC Demo',
+//       home: LoginPage(
+//         key: Key('loginPage'),
+//         authenticationService: authenticationService,
+//       ),
+//     );
+//   }
+// }
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'auth/services/authentication_service.dart';
-import 'auth/pages/login_page.dart';
+import './auth/pages/login_page.dart';
+import './auth/bloc_auth/login_bloc.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final AuthenticationService authenticationService = AuthenticationService();
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter BLoC Demo',
-      home: LoginPage(
-        key: Key('loginPage'),
-        authenticationService: authenticationService,
+      home: BlocProvider(
+        create: (_) => LoginBloc(),
+        child: LoginPage(),
       ),
     );
   }
