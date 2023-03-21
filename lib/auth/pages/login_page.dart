@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc_auth/login_bloc.dart';
 
 class LoginPage extends StatelessWidget {
+  final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -10,6 +11,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<LoginBloc, LoginState>(
+        key: _formKey,
         builder: (context, state) {
           return Stack(
             children: <Widget>[
@@ -121,13 +123,32 @@ class LoginPage extends StatelessWidget {
                         width: double.infinity,
                         margin: EdgeInsets.only(left: 40, right: 40),
                         child: ElevatedButton(
-                          onPressed: () {
-                            BlocProvider.of<LoginBloc>(context).add(
-                              LoginButtonPressed(
-                                email: _emailController.text,
-                                password: _passwordController.text,
-                              ),
-                            );
+                          onPressed: () async {
+                            // BlocProvider.of<LoginBloc>(context).add(
+                            //   LoginButtonPressed(
+                            //     email: _emailController.text,
+                            //     password: _passwordController.text,
+                            //   ),
+                            // );
+                            final loginBloc =
+                                BlocProvider.of<LoginBloc>(context);
+                            final email = _emailController.text;
+                            final password = _passwordController.text;
+
+                            // Dispatch the LoginButtonPressed event to the LoginBloc
+                            loginBloc.add(LoginButtonPressed(
+                                email: email, password: password));
+
+                            final result = await loginBloc.stream
+                                .firstWhere((state) => state is LoginSuccess);
+
+                            if (result is LoginSuccess) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: Text("Login successful!"),
+                                duration: Duration(seconds: 2),
+                              ));
+                            }
                           },
                           style: ElevatedButton.styleFrom(
                             primary: Color(0xfffe9721),
@@ -147,24 +168,7 @@ class LoginPage extends StatelessWidget {
                     SizedBox(
                       height: 16,
                     ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: <Widget>[
-                    //     Text(
-                    //       "It's your first time here?",
-                    //       style: TextStyle(color: Colors.white),
-                    //     ),
-                    //     SizedBox(
-                    //       width: 8,
-                    //     ),
-                    //     Text(
-                    //       "Sign up",
-                    //       style: TextStyle(
-                    //           color: Color(0xfffe9721),
-                    //           fontWeight: FontWeight.bold),
-                    //     )
-                    //   ],
-                    // ),
+
                     SizedBox(
                       height: 30,
                     ),

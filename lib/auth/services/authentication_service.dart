@@ -1,59 +1,17 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
+import '../models/user_model.dart';
 
-class AuthenticationService {
-  UserApi _userApi;
+class ApiService {
+  final Dio dio;
 
-  AuthenticationService(this._userApi);
+  ApiService({required this.dio});
 
-  Future<String> login(String username, String password) async {
-    // Validate input
-    if (username.isEmpty || password.isEmpty) {
-      throw Exception('Username and password are required.');
-    }
-
-    // Authenticate user
-    final user = await _userApi.authenticateUser(username, password);
-
-    // Generate token
-    final token = generateToken(user);
-
-    // Return token
-    return token;
-  }
-
-  String generateToken(User user) {
-    // Generate a random token based on user data
-    return 'some-random-token';
-  }
-}
-
-class User {
-  final String username;
-
-  User(this.username);
-}
-
-class UserApi {
-  final String apiKey;
-  UserApi(this.apiKey);
-  Future<User> authenticateUser(String username, String password) async {
-    // Make a request to the user API to authenticate the user
-    // and return the authenticated user object
-    // Pass the API key in the request headers
-    final response = await http.post(
-      Uri.parse('https://178.128.221.69/users'),
-      headers: {
-        'Authorization': 'Bearer $apiKey',
-      },
-      body: {
-        'username': username,
-        'password': password,
-      },
-    );
-
-    // Parse the response and return the user object
-    final userJson = jsonDecode(response.body);
-    return User(userJson['username']);
+  Future<Response<dynamic>> login(
+      {required String email, required String password}) async {
+    final response = await dio
+        .post('/users/login', data: {'email': email, 'password': password});
+    return response;
   }
 }
