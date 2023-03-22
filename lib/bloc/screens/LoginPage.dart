@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -6,87 +8,6 @@ import '../login/LoginEvent.dart';
 import '../login/LoginState.dart';
 import 'HomePage.dart';
 
-// class LoginPage extends StatefulWidget {
-//   final LoginBloc loginBloc;
-
-//   const LoginPage({required this.loginBloc});
-
-//   @override
-//   _LoginPageState createState() => _LoginPageState();
-// }
-
-// class _LoginPageState extends State<LoginPage> {
-//   final TextEditingController _emailController = TextEditingController();
-//   final TextEditingController _passwordController = TextEditingController();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: BlocListener<LoginBloc, LoginState>(
-//         listener: (context, state) {
-//           if (state is LoginSuccess) {
-//             Navigator.push(
-//               context,
-//               MaterialPageRoute(
-//                 builder: (context) => HomePage(),
-//               ),
-//             );
-
-//             // } else if (state is LoginFailure) {
-//             //   // setState(() {
-//             //   //   ScaffoldMessenger.of(context)
-//             //   //     ..hideCurrentSnackBar()
-//             //   //     ..showSnackBar(SnackBar(content: Text(state.error)));
-//             //   // });
-//             //   ScaffoldMessenger.of(context).showSnackBar(
-//             //     SnackBar(
-//             //       content: Text("Error: Login failed. Please try again."),
-//             //       duration: Duration(seconds: 3),
-//             //     ),
-//             //   );
-//             //   return;
-//           }
-//         },
-//         child: BlocBuilder<LoginBloc, LoginState>(
-//           builder: (context, state) {
-//             return Center(
-//               child: Padding(
-//                 padding: EdgeInsets.symmetric(horizontal: 20),
-//                 child: Column(
-//                   mainAxisAlignment: MainAxisAlignment.center,
-//                   children: [
-//                     TextField(
-//                       controller: _emailController,
-//                       decoration: InputDecoration(hintText: 'Email'),
-//                     ),
-//                     SizedBox(height: 10),
-//                     TextField(
-//                       controller: _passwordController,
-//                       decoration: InputDecoration(hintText: 'Password'),
-//                       obscureText: true,
-//                     ),
-//                     SizedBox(height: 20),
-//                     ElevatedButton(
-//                       onPressed: state is LoginLoading
-//                           ? null
-//                           : () {
-//                               widget.loginBloc.add(LoginButtonPressed(
-//                                 email: _emailController.text,
-//                                 password: _passwordController.text,
-//                               ));
-//                             },
-//                       child: Text('Login'),
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//             );
-//           },
-//         ),
-//       ),
-//     );
-//   }
-// }
 class LoginPage extends StatefulWidget {
   final LoginBloc loginBloc;
 
@@ -218,12 +139,9 @@ class _LoginPageState extends State<LoginPage> {
                         margin: EdgeInsets.only(left: 40, right: 40),
                         child: ElevatedButton(
                           onPressed: () async {
-                            // BlocProvider.of<LoginBloc>(context).add(
-                            //   LoginButtonPressed(
-                            //     email: _emailController.text,
-                            //     password: _passwordController.text,
-                            //   ),
-                            // );
+                            // Show the loading dialog
+                            showLoadingDialog(context);
+
                             final loginBloc =
                                 BlocProvider.of<LoginBloc>(context);
                             final email = _emailController.text;
@@ -233,14 +151,25 @@ class _LoginPageState extends State<LoginPage> {
                             loginBloc.add(LoginButtonPressed(
                                 email: email, password: password));
 
-                            final result = await loginBloc.stream
-                                .firstWhere((state) => state is LoginSuccess);
+                            final result = await loginBloc.stream.firstWhere(
+                                (state) =>
+                                    state is LoginSuccess ||
+                                    state is LoginFailure);
 
                             if (result is LoginSuccess) {
+                              Navigator.pop(context);
+
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomeScreen()),
+                              );
+                            } else if (result is LoginFailure) {
+                              Navigator.pop(context);
+
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(
-                                content: Text("Login successful!"),
-                                duration: Duration(seconds: 2),
+                                content: Text("Invalid email or password"),
                               ));
                             }
                           },
@@ -273,6 +202,40 @@ class _LoginPageState extends State<LoginPage> {
           );
         },
       ),
+    );
+  }
+
+  void showLoadingDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
+          child: Dialog(
+            child: Container(
+              height: 80,
+              padding: EdgeInsets.all(16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(
+                    strokeWidth: 4,
+                    valueColor:
+                        AlwaysStoppedAnimation<Color>(Colors.deepOrangeAccent),
+                  ),
+                  SizedBox(width: 16),
+                  Text('ກຳລັງໂຫລດ...',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      )),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

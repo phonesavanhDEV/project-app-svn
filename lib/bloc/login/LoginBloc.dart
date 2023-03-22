@@ -37,22 +37,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         errorMessage = error.response!.data['message'];
       }
 
-      // showDialog(
-      //   context: context,
-      //   builder: (BuildContext context) {
-      //     return AlertDialog(
-      //       title: Text('Error'),
-      //       content: Text(errorMessage),
-      //       actions: [
-      //         TextButton(
-      //           onPressed: () => Navigator.of(context).pop(),
-      //           child: Text('OK'),
-      //         ),
-      //       ],
-      //     );
-      //   },
-      // );
-
       emit(LoginFailure(error: errorMessage));
     }
   }
