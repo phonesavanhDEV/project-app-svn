@@ -12,8 +12,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc({required this.dio, required this.context})
       : super(LoginInitial()) {
     on<LoginButtonPressed>(_handleLoginButtonPressed);
-    on<SomeEvent>(_handleSomeEvent);
-    on<AnotherEvent>(_handleAnotherEvent);
   }
 
   void _handleLoginButtonPressed(
@@ -39,13 +37,5 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       emit(LoginFailure(error: errorMessage));
     }
-  }
-
-  void _handleSomeEvent(SomeEvent event, Emitter<LoginState> emit) {
-    // Handle the event and emit new states as needed
-  }
-
-  void _handleAnotherEvent(AnotherEvent event, Emitter<LoginState> emit) {
-    // Handle the event and emit new states as needed
   }
 }

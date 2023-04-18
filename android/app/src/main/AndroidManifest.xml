@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.svn_costing_profit">
+    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
    <application
-        android:label="svn_costing_profit"
+        android:label="CostingSVN"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

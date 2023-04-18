@@ -86,6 +86,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc/login/LoginBloc.dart';
 import 'bloc/screens/LoginPage.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() {
   runApp(

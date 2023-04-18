@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
               Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('assets/images/image_screen.jpg'),
+                        image: AssetImage('assets/images/screen_n_login.jpg'),
                         fit: BoxFit.cover)),
               ),
               Container(
@@ -50,18 +50,18 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     Text(
-                      "ສະບາຍດີ!",
+                      "SouvannyCosting",
                       style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'NotoSansLao',
-                          fontSize: 38,
+                          fontSize: 32,
                           fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
                       height: 10,
                     ),
                     Text(
-                      "ຮ້ານ minismall ຍີນດີໃຫ້ບໍລິການ",
+                      "ສຸວັນນີ souvanny",
                       style: TextStyle(
                           color: Colors.grey.shade500,
                           fontFamily: 'NotoSansLao',
@@ -77,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                         controller: _emailController,
                         style: TextStyle(fontSize: 14, color: Colors.white),
                         decoration: InputDecoration(
-                          hintText: "ອີເມວ",
+                          hintText: "ໄອດີ",
                           hintStyle: TextStyle(
                             color: Colors.grey.shade700,
                             fontFamily: 'NotoSansLao',

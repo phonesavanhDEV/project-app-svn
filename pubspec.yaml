@@ -50,13 +50,14 @@ dev_dependencies:
   flutter_native_splash: ^2.2.18
 
 flutter_native_splash:
-  # background_image: assets/images/new_souvanny.png
+  background_image: assets/images/newScreen.jpg
   # image_dark: assets/images/new_souvanny.png
-  color: "#FFA500"
-  image: assets/images/logo.ico
-  fill: false
+  # color: "#FFA500"
+  # image: assets/images/newScreen.jpg
+  fill: true
   android: true
   ios: true
+
 
 flutter_icons:
   android: true
@@ -68,14 +69,15 @@ flutter_icons:
     image_path: "assets/images/new_souvanny.png"
     background_color: "#hexcode"
     theme_color: "#hexcode"
+    icon_size: 72 
   windows:
     generate: true
     image_path: "assets/images/new_souvanny.png"
-    icon_size: 48 # min:48, max:256, default: 48
+    icon_size: 72 # min:48, max:256, default: 48
   macos:
     generate: true
     image_path: "assets/images/new_souvanny.png"
-
+    icon_size: 72
 
 flutter:
   uses-material-design: true
