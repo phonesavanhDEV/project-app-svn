@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../login/LoginBloc.dart';
 import '../login/LoginEvent.dart';
 import '../login/LoginState.dart';
-import 'HomePage.dart';
+import '../../pages/HomePage.dart';
 
 class LoginPage extends StatefulWidget {
   final LoginBloc loginBloc;
@@ -19,8 +19,9 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
+  final _userController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: 50,
                       margin: EdgeInsets.only(left: 40, right: 40),
                       child: TextField(
-                        controller: _emailController,
+                        controller: _userController,
                         style: TextStyle(fontSize: 14, color: Colors.white),
                         decoration: InputDecoration(
                           hintText: "ໄອດີ",
@@ -99,9 +100,29 @@ class _LoginPageState extends State<LoginPage> {
                     Container(
                       height: 50,
                       margin: EdgeInsets.only(left: 40, right: 40),
+                      // child: TextField(
+                      //   controller: _passwordController,
+                      //   obscureText: true,
+                      //   style: TextStyle(fontSize: 14, color: Colors.white),
+                      //   decoration: InputDecoration(
+                      //     hintText: "ລະຫັດຜ່ານ",
+                      //     hintStyle: TextStyle(
+                      //       color: Colors.grey.shade700,
+                      //       fontFamily: 'NotoSansLao',
+                      //     ),
+                      //     filled: true,
+                      //     fillColor: Color(0xff161d27).withOpacity(0.9),
+                      //     enabledBorder: OutlineInputBorder(
+                      //         borderRadius: BorderRadius.circular(30),
+                      //         borderSide: BorderSide(color: Color(0xfffe9721))),
+                      //     focusedBorder: OutlineInputBorder(
+                      //         borderRadius: BorderRadius.circular(30),
+                      //         borderSide: BorderSide(color: Color(0xfffe9721))),
+                      //   ),
+                      // ),
                       child: TextField(
                         controller: _passwordController,
-                        obscureText: true,
+                        obscureText: _obscureText,
                         style: TextStyle(fontSize: 14, color: Colors.white),
                         decoration: InputDecoration(
                           hintText: "ລະຫັດຜ່ານ",
@@ -112,24 +133,45 @@ class _LoginPageState extends State<LoginPage> {
                           filled: true,
                           fillColor: Color(0xff161d27).withOpacity(0.9),
                           enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide(color: Color(0xfffe9721))),
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: BorderSide(color: Color(0xfffe9721)),
+                          ),
                           focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide(color: Color(0xfffe9721))),
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: BorderSide(color: Color(0xfffe9721)),
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Colors.grey.shade700,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
+                          ),
                         ),
                       ),
                     ),
                     SizedBox(
                       height: 12,
                     ),
-                    // Text(
-                    //   "Forgot Password?",
-                    //   style: TextStyle(
-                    //       color: Color(0xfffe9721),
-                    //       fontSize: 14,
-                    //       fontWeight: FontWeight.bold),
-                    // ),
+                    TextButton(
+                      onPressed: () {
+                        print('Button pressed');
+                      },
+                      child: Text(
+                        'Sign Up',
+                        style: TextStyle(
+                          color: Color(0xfffe9721),
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                     SizedBox(
                       height: 20,
                     ),
@@ -144,12 +186,13 @@ class _LoginPageState extends State<LoginPage> {
 
                             final loginBloc =
                                 BlocProvider.of<LoginBloc>(context);
-                            final email = _emailController.text;
-                            final password = _passwordController.text;
+                            final username = _userController.text;
+                            final userpassword = _passwordController.text;
 
                             // Dispatch the LoginButtonPressed event to the LoginBloc
                             loginBloc.add(LoginButtonPressed(
-                                email: email, password: password));
+                                username: username,
+                                userpassword: userpassword));
 
                             final result = await loginBloc.stream.firstWhere(
                                 (state) =>
@@ -158,19 +201,33 @@ class _LoginPageState extends State<LoginPage> {
 
                             if (result is LoginSuccess) {
                               Navigator.pop(context);
-
-                              Navigator.push(
+                              // ScaffoldMessenger.of(context).showSnackBar(
+                              //   SnackBar(
+                              //     content: Text('Login successful!'),
+                              //     backgroundColor: Colors.green,
+                              //   ),
+                              // );
+                              Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => HomeScreen()),
                               );
                             } else if (result is LoginFailure) {
                               Navigator.pop(context);
-
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(
-                                content: Text("Invalid email or password"),
-                              ));
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content:
+                                      Text('Invalid username or password.'),
+                                  backgroundColor: Colors.red,
+                                ),
+                              );
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('An error occurred.'),
+                                  backgroundColor: Colors.red,
+                                ),
+                              );
                             }
                           },
                           style: ElevatedButton.styleFrom(
@@ -191,7 +248,6 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 16,
                     ),
-
                     SizedBox(
                       height: 30,
                     ),

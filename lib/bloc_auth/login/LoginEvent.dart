@@ -8,18 +8,18 @@ abstract class LoginEvent extends Equatable {
 }
 
 class LoginButtonPressed extends LoginEvent {
-  final String email;
-  final String password;
+  final String username;
+  final String userpassword;
 
-  LoginButtonPressed({required this.email, required this.password});
+  LoginButtonPressed({required this.username, required this.userpassword});
 
   @override
-  List<Object> get props => [email, password];
+  List<Object> get props => [username, userpassword];
 
   Map<String, dynamic> toJson() {
     return {
-      'email': email,
-      'password': password,
+      'username': username,
+      'userpassword': userpassword,
     };
   }
 }

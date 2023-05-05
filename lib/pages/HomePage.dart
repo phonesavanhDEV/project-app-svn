@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'navigation_bar/dashboard.dart';
-import 'navigation_bar/notifications.dart';
-import 'navigation_bar/setting.dart';
+import 'navigation/dashboard.dart';
+import 'navigation/notifications.dart';
+import 'navigation/setting.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
