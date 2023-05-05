@@ -156,25 +156,60 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        print('Button pressed');
-                      },
-                      child: Text(
-                        'Sign Up',
-                        style: TextStyle(
-                          color: Color(0xfffe9721),
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
+                    // Row(
+                    //   mainAxisAlignment:
+                    //       MainAxisAlignment.end, // Aligns children to the right
+                    //   children: [
+                    //     TextButton(
+                    //       onPressed: () {
+                    //         ScaffoldMessenger.of(context).showSnackBar(
+                    //           SnackBar(
+                    //             content: Text('coming soon'),
+                    //             backgroundColor: Colors.green,
+                    //           ),
+                    //         );
+                    //       },
+                    //       child: Text(
+                    //         'Sign Up',
+                    //         style: TextStyle(
+                    //           color: Color(0xfffe9721),
+                    //           fontFamily: 'NotoSansLao',
+                    //           fontWeight: FontWeight.bold,
+                    //           fontSize: 16,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(right: 35.0),
+                          child: TextButton(
+                            onPressed: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('coming soon'),
+                                  backgroundColor: Colors.green,
+                                ),
+                              );
+                            },
+                            child: Text(
+                              'ສ້າງບັນຊີໃໝ່', //Create a new account
+                              style: TextStyle(
+                                color: Color(0xfffe9721),
+                                fontFamily: 'NotoSansLao',
+                                //fontWeight: FontWeight.bold,
+                                //fontStyle: FontStyle.italic,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
+
                     Container(
                         height: 50,
                         width: double.infinity,
@@ -201,12 +236,7 @@ class _LoginPageState extends State<LoginPage> {
 
                             if (result is LoginSuccess) {
                               Navigator.pop(context);
-                              // ScaffoldMessenger.of(context).showSnackBar(
-                              //   SnackBar(
-                              //     content: Text('Login successful!'),
-                              //     backgroundColor: Colors.green,
-                              //   ),
-                              // );
+
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
@@ -237,8 +267,9 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           child: Text(
-                            "LOGIN",
+                            "ເຂົ້າສູ່ລະບົບ", //LOGIN
                             style: TextStyle(
+                              fontFamily: 'NotoSansLao',
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 16,

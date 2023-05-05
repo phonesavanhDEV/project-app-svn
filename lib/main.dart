@@ -16,7 +16,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // final Dio dio = Dio();
   final LoginBloc loginBloc;
 
   MyApp({Key? key, required this.loginBloc}) : super(key: key);
