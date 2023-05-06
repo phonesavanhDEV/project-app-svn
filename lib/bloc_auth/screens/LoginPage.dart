@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../contact/HaxColors.dart';
+import '../../network/CheckConnectedServer.dart';
 import '../login/LoginBloc.dart';
 import '../login/LoginEvent.dart';
 import '../login/LoginState.dart';
@@ -24,6 +26,11 @@ class _LoginPageState extends State<LoginPage> {
   bool _obscureText = true;
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<LoginBloc, LoginState>(
@@ -42,8 +49,8 @@ class _LoginPageState extends State<LoginPage> {
                     gradient: LinearGradient(colors: [
                   Colors.transparent,
                   Colors.transparent,
-                  Color(0xff161d27).withOpacity(0.9),
-                  Color(0xff161d27),
+                  HaxColor.colorDark.withOpacity(0.9),
+                  HaxColor.colorDark,
                 ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
               ),
               Center(
@@ -87,10 +94,12 @@ class _LoginPageState extends State<LoginPage> {
                           fillColor: Color(0xff161d27).withOpacity(0.9),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide(color: Color(0xfffe9721))),
+                              borderSide:
+                                  BorderSide(color: HaxColor.colorOrange)),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide(color: Color(0xfffe9721))),
+                              borderSide:
+                                  BorderSide(color: HaxColor.colorOrange)),
                         ),
                       ),
                     ),
@@ -100,26 +109,6 @@ class _LoginPageState extends State<LoginPage> {
                     Container(
                       height: 50,
                       margin: EdgeInsets.only(left: 40, right: 40),
-                      // child: TextField(
-                      //   controller: _passwordController,
-                      //   obscureText: true,
-                      //   style: TextStyle(fontSize: 14, color: Colors.white),
-                      //   decoration: InputDecoration(
-                      //     hintText: "ລະຫັດຜ່ານ",
-                      //     hintStyle: TextStyle(
-                      //       color: Colors.grey.shade700,
-                      //       fontFamily: 'NotoSansLao',
-                      //     ),
-                      //     filled: true,
-                      //     fillColor: Color(0xff161d27).withOpacity(0.9),
-                      //     enabledBorder: OutlineInputBorder(
-                      //         borderRadius: BorderRadius.circular(30),
-                      //         borderSide: BorderSide(color: Color(0xfffe9721))),
-                      //     focusedBorder: OutlineInputBorder(
-                      //         borderRadius: BorderRadius.circular(30),
-                      //         borderSide: BorderSide(color: Color(0xfffe9721))),
-                      //   ),
-                      // ),
                       child: TextField(
                         controller: _passwordController,
                         obscureText: _obscureText,
@@ -134,11 +123,11 @@ class _LoginPageState extends State<LoginPage> {
                           fillColor: Color(0xff161d27).withOpacity(0.9),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
-                            borderSide: BorderSide(color: Color(0xfffe9721)),
+                            borderSide: BorderSide(color: HaxColor.colorOrange),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
-                            borderSide: BorderSide(color: Color(0xfffe9721)),
+                            borderSide: BorderSide(color: HaxColor.colorOrange),
                           ),
                           suffixIcon: IconButton(
                             icon: Icon(
@@ -156,31 +145,6 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-                    // Row(
-                    //   mainAxisAlignment:
-                    //       MainAxisAlignment.end, // Aligns children to the right
-                    //   children: [
-                    //     TextButton(
-                    //       onPressed: () {
-                    //         ScaffoldMessenger.of(context).showSnackBar(
-                    //           SnackBar(
-                    //             content: Text('coming soon'),
-                    //             backgroundColor: Colors.green,
-                    //           ),
-                    //         );
-                    //       },
-                    //       child: Text(
-                    //         'Sign Up',
-                    //         style: TextStyle(
-                    //           color: Color(0xfffe9721),
-                    //           fontFamily: 'NotoSansLao',
-                    //           fontWeight: FontWeight.bold,
-                    //           fontSize: 16,
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -198,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                             child: Text(
                               'ສ້າງບັນຊີໃໝ່', //Create a new account
                               style: TextStyle(
-                                color: Color(0xfffe9721),
+                                color: HaxColor.colorOrange,
                                 fontFamily: 'NotoSansLao',
                                 //fontWeight: FontWeight.bold,
                                 //fontStyle: FontStyle.italic,
@@ -209,7 +173,6 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ],
                     ),
-
                     Container(
                         height: 50,
                         width: double.infinity,
@@ -246,15 +209,8 @@ class _LoginPageState extends State<LoginPage> {
                               Navigator.pop(context);
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content:
-                                      Text('Invalid username or password.'),
-                                  backgroundColor: Colors.red,
-                                ),
-                              );
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('An error occurred.'),
+                                  content: Text(
+                                      'ກະລຸນາກວດຊື່ໄອດີແລະລະຫັດຜ່ານຄືນໃໝ່'),
                                   backgroundColor: Colors.red,
                                 ),
                               );
