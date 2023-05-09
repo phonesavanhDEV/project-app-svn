@@ -1,14 +1,14 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../contact/HaxColors.dart';
-import '../../network/CheckConnectedServer.dart';
-import '../login/LoginBloc.dart';
-import '../login/LoginEvent.dart';
-import '../login/LoginState.dart';
-import '../../pages/HomePage.dart';
+import '../../../contact/HaxColors.dart';
+import '../../../network/CheckNetwork.dart';
+import '../../../pages/HomePage.dart';
+import '../../login/LoginBloc.dart';
+import '../../login/LoginEvent.dart';
+import '../../login/LoginState.dart';
+import '../RegisterScreen/RegisterPage.dart';
+import 'FormShowDialog.dart';
 
 class LoginPage extends StatefulWidget {
   final LoginBloc loginBloc;
@@ -25,9 +25,23 @@ class _LoginPageState extends State<LoginPage> {
   final _passwordController = TextEditingController();
   bool _obscureText = true;
 
+  final InternetConnectivity internetConnectivity = InternetConnectivity();
+
   @override
   void initState() {
     super.initState();
+    internetConnectivity.startMonitoringConnectivity((isConnected) {
+      if (!isConnected) {
+        FormShowDialog.showAlertDialog(
+            context, 'ຂໍອະໄພ! ມີບັນຫາໃນການເຊື່ອມຕໍ່');
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    internetConnectivity.stopMonitoringConnectivity();
+    super.dispose();
   }
 
   @override
@@ -152,10 +166,16 @@ class _LoginPageState extends State<LoginPage> {
                           padding: EdgeInsets.only(right: 35.0),
                           child: TextButton(
                             onPressed: () {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('coming soon'),
-                                  backgroundColor: Colors.green,
+                              // ScaffoldMessenger.of(context).showSnackBar(
+                              //   SnackBar(
+                              //     content: Text('coming soon'),
+                              //     backgroundColor: Colors.green,
+                              //   ),
+                              // );
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => RegisterPage(),
                                 ),
                               );
                             },
@@ -180,7 +200,17 @@ class _LoginPageState extends State<LoginPage> {
                         child: ElevatedButton(
                           onPressed: () async {
                             // Show the loading dialog
-                            showLoadingDialog(context);
+
+                            final internetConnectivity = InternetConnectivity();
+                            bool isConnected = await internetConnectivity
+                                .checkInternetConnectivity();
+                            if (!isConnected) {
+                              FormShowDialog.showAlertDialog(
+                                  context, 'ຂໍອະໄພ! ມີບັນຫາໃນການເຊື່ອມຕໍ່');
+                              return;
+                            }
+
+                            FormShowDialog.showLoadingDialog(context);
 
                             final loginBloc =
                                 BlocProvider.of<LoginBloc>(context);
@@ -199,11 +229,11 @@ class _LoginPageState extends State<LoginPage> {
 
                             if (result is LoginSuccess) {
                               Navigator.pop(context);
-
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => HomeScreen()),
+                                  builder: (context) => HomeScreen(),
+                                ),
                               );
                             } else if (result is LoginFailure) {
                               Navigator.pop(context);
@@ -217,7 +247,7 @@ class _LoginPageState extends State<LoginPage> {
                             }
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: Color(0xfffe9721),
+                            primary: HaxColor.colorOrange,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
@@ -245,40 +275,6 @@ class _LoginPageState extends State<LoginPage> {
           );
         },
       ),
-    );
-  }
-
-  void showLoadingDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
-          child: Dialog(
-            child: Container(
-              height: 80,
-              padding: EdgeInsets.all(16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircularProgressIndicator(
-                    strokeWidth: 4,
-                    valueColor:
-                        AlwaysStoppedAnimation<Color>(Colors.deepOrangeAccent),
-                  ),
-                  SizedBox(width: 16),
-                  Text('ກຳລັງໂຫລດ...',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      )),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
     );
   }
 }

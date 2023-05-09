@@ -12,9 +12,9 @@ class LoginInitial extends LoginState {}
 class LoginLoading extends LoginState {}
 
 class LoginSuccess extends LoginState {
-  final String succcess;
+  final String success;
 
-  LoginSuccess({required this.succcess});
+  LoginSuccess({required this.success});
 
   @override
   List<Object> get props => [];
