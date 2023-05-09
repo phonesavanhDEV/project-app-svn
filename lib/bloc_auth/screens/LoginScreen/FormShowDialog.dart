@@ -45,23 +45,25 @@ class FormShowDialog {
         return BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
           child: Dialog(
-            child: Container(
-              height: 80,
-              padding: EdgeInsets.all(16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+            backgroundColor: Colors.transparent,
+            child: Center(
+              child: Stack(
+                alignment: Alignment.center,
                 children: [
-                  CircularProgressIndicator(
-                    strokeWidth: 4,
-                    valueColor:
-                        AlwaysStoppedAnimation<Color>(Colors.deepOrangeAccent),
+                  SizedBox(
+                    child: CircularProgressIndicator(
+                      strokeWidth: 4,
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                          Colors.deepOrangeAccent),
+                    ),
+                    height: 50,
+                    width: 50,
                   ),
-                  SizedBox(width: 16),
-                  Text('ກຳລັງໂຫລດ...',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      )),
+                  Image.asset(
+                    'assets/images/new_souvanny.png',
+                    width: 45,
+                    height: 45,
+                  ),
                 ],
               ),
             ),

@@ -166,12 +166,6 @@ class _LoginPageState extends State<LoginPage> {
                           padding: EdgeInsets.only(right: 35.0),
                           child: TextButton(
                             onPressed: () {
-                              // ScaffoldMessenger.of(context).showSnackBar(
-                              //   SnackBar(
-                              //     content: Text('coming soon'),
-                              //     backgroundColor: Colors.green,
-                              //   ),
-                              // );
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
@@ -240,7 +234,13 @@ class _LoginPageState extends State<LoginPage> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
-                                      'ກະລຸນາກວດຊື່ໄອດີແລະລະຫັດຜ່ານຄືນໃໝ່'),
+                                    'ກະລຸນາກວດຊື່ໄອດີແລະລະຫັດຜ່ານຄືນໃໝ່',
+                                    style: TextStyle(
+                                      fontFamily: 'NotoSansLao',
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                    ),
+                                  ),
                                   backgroundColor: Colors.red,
                                 ),
                               );

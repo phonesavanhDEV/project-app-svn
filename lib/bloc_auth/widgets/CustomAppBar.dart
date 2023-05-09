@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:svn_costing_profit/bloc_auth/screens/LoginScreen/LoginPage.dart';
 import 'package:svn_costing_profit/contact/HaxColors.dart';
-
-import '../login/LoginBloc.dart';
-import 'package:http/http.dart' as http;
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -15,7 +11,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(title, textAlign: TextAlign.center),
+      title: Text(
+        title,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontFamily: 'NotoSansLao',
+          color: Colors.white,
+          fontSize: 20,
+        ),
+      ),
       centerTitle: true,
       backgroundColor: HaxColor.colorOrange,
       shape: RoundedRectangleBorder(
@@ -26,7 +30,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: IconButton(
         icon: Icon(Icons.arrow_back_ios),
         onPressed: () {
-          // Navigate back to the previous screen
           Navigator.pushNamed(context, '/login');
         },
       ),
