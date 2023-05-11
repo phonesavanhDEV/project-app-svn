@@ -8,4 +8,9 @@ class pathContact {
   String getRepoPathLogin() {
     return _repoPathLogin;
   }
+
+  String _repoPathSignUp = 'https://souvanny.la/costing/CostingAPI/iSignUp';
+  String getRepoPathSignUP() {
+    return _repoPathSignUp;
+  }
 }

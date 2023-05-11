@@ -44,30 +44,30 @@ class FormShowDialog {
       builder: (BuildContext context) {
         return BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
-          child: Dialog(
-            backgroundColor: Colors.transparent,
-            child: Center(
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  SizedBox(
-                    child: CircularProgressIndicator(
-                      strokeWidth: 4,
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                          Colors.deepOrangeAccent),
-                    ),
-                    height: 50,
-                    width: 50,
+          // child: Dialog(
+          //   backgroundColor: Colors.transparent,
+          child: Center(
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                SizedBox(
+                  child: CircularProgressIndicator(
+                    strokeWidth: 4,
+                    valueColor:
+                        AlwaysStoppedAnimation<Color>(Colors.deepOrangeAccent),
                   ),
-                  Image.asset(
-                    'assets/images/new_souvanny.png',
-                    width: 45,
-                    height: 45,
-                  ),
-                ],
-              ),
+                  height: 50,
+                  width: 50,
+                ),
+                Image.asset(
+                  'assets/images/new_souvanny.png',
+                  width: 45,
+                  height: 45,
+                ),
+              ],
             ),
           ),
+          // ),
         );
       },
     );
