@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:svn_costing_profit/contact/HaxColors.dart';
 
 import 'navigation/dashboard.dart';
 import 'navigation/notifications.dart';
 import 'navigation/setting.dart';
+import 'widgets/CustomAppBarHeader.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -27,17 +29,20 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home Dashboard'),
+      appBar: CustomAppBarHeader(
+        title: 'SouvannyCosting',
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped,
+        selectedItemColor: HaxColor.colorDarkGreen,
+        unselectedItemColor: Colors.white,
+        backgroundColor: HaxColor.colorOrange,
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.dashboard),
-            label: 'Dashboard',
+            label: 'ຫຼັກໜ້າ',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
@@ -45,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: 'Settings',
+            label: 'ການຕັ່ງຄ່າ',
           ),
         ],
       ),

@@ -78,7 +78,6 @@ class _RegisterPageState extends State<RegisterPage> {
     try {
       Navigator.pop(context);
       SchedulerBinding.instance.addPostFrameCallback((_) {
-        //Navigator.pushNamed(context, '/login');
         showDialog(
           context: context,
           barrierDismissible: false,
@@ -86,39 +85,51 @@ class _RegisterPageState extends State<RegisterPage> {
             return BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
               child: AlertDialog(
-                title: Text(
-                  'ບັນທືກ',
-                  style: TextStyle(
-                    fontFamily: 'NotoSansLao',
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
-                content: Text(
-                  'ສຳເລັດແລ້ວ',
-                  style: TextStyle(
-                    fontFamily: 'NotoSansLao',
-                    color: Colors.black,
-                    fontSize: 16,
-                  ),
-                ),
-                actions: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.orange,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
+                title: Center(
+                  child: Column(children: [
+                    Icon(
+                      Icons.check_circle_outline_rounded,
+                      color: Colors.green,
+                      size: 55,
                     ),
-                    onPressed: () => Navigator.pushNamed(context, '/login'),
-                    child: Text(
-                      'ຕົກລົງ',
+                    SizedBox(width: 10),
+                    Text(
+                      'ບັນທືກ',
                       style: TextStyle(
                         fontFamily: 'NotoSansLao',
-                        color: Colors.white,
+                        color: Colors.black,
                         fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                        fontSize: 25,
+                      ),
+                    ),
+                    Text(
+                      'ສຳເລັດແລ້ວ',
+                      style: TextStyle(
+                        fontFamily: 'NotoSansLao',
+                        color: Colors.black,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ]),
+                ),
+                actions: [
+                  Center(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.orange,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                      onPressed: () => Navigator.pushNamed(context, '/login'),
+                      child: Text(
+                        'ຕົກລົງ',
+                        style: TextStyle(
+                          fontFamily: 'NotoSansLao',
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
                       ),
                     ),
                   ),
