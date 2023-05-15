@@ -15,12 +15,12 @@ class CustomAppBarHeader extends StatelessWidget
     return AppBar(
       title: Text(
         title,
-        textAlign: TextAlign.center,
+        textAlign: TextAlign.right,
         style: TextStyle(
           fontFamily: 'NotoSansLao',
           color: Colors.white,
           fontWeight: FontWeight.bold,
-          fontSize: 20,
+          fontSize: 16,
           shadows: [
             Shadow(
               color: Colors.grey,

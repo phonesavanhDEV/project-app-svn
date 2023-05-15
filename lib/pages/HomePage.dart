@@ -33,26 +33,33 @@ class _HomeScreenState extends State<HomeScreen> {
         title: 'SouvannyCosting',
       ),
       body: _children[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: onTabTapped,
-        selectedItemColor: HaxColor.colorDarkGreen,
-        unselectedItemColor: Colors.white,
-        backgroundColor: HaxColor.colorOrange,
-        currentIndex: _currentIndex,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.dashboard),
-            label: 'ຫຼັກໜ້າ',
+      bottomNavigationBar: Theme(
+        data: ThemeData(
+          textTheme: TextTheme(
+            bodyText2: TextStyle(
+              fontFamily: 'NotoSansLao',
+              fontSize: 10.0,
+              color: Colors.white,
+            ),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: 'Notifications',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'ການຕັ່ງຄ່າ',
-          ),
-        ],
+        ),
+        child: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'ຫຼັກໜ້າ',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: 'ການຕັ່ງຄ່າ',
+            ),
+          ],
+          currentIndex: _currentIndex,
+          onTap: onTabTapped,
+          selectedItemColor: HaxColor.colorDarkGreen,
+          unselectedItemColor: Colors.white,
+          backgroundColor: HaxColor.colorOrange,
+        ),
       ),
     );
   }

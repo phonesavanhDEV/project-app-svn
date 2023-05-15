@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:svn_costing_profit/pages/CostAndProfitEvaluationPlan/CostProfit.dart';
+import 'package:svn_costing_profit/pages/HomePage.dart';
 
 import '../bloc_auth/login/LoginBloc.dart';
 import '../bloc_auth/screens/LoginScreen/LoginPage.dart';
@@ -15,7 +17,13 @@ class RouteController {
             builder: (_) => LoginPage(
                   loginBloc: loginBloc,
                 ));
-      // Add your other routes here
+
+      case '/home':
+        return MaterialPageRoute(builder: (_) => HomeScreen());
+
+      case '/costprofit':
+        return MaterialPageRoute(builder: (_) => CostProfit());
+
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

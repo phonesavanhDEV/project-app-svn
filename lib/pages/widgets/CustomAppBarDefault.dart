@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:svn_costing_profit/contact/HaxColors.dart';
 import 'package:svn_costing_profit/pages/HomePage.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+class CustomAppBarDefault extends StatelessWidget
+    implements PreferredSizeWidget {
   final String title;
   final double barHeight = 25;
 
-  CustomAppBar({required this.title});
+  CustomAppBarDefault({required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -31,16 +32,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: IconButton(
         icon: Icon(Icons.arrow_back_ios),
         onPressed: () {
-          Navigator.pushNamed(context, '/login');
-          // if (title == 'ສ້າງບັນຊີໃໝ່') {
-          //   Navigator.pushNamed(context, '/login');
-          // } else {
-          //   // Navigator.pushNamed(context, '/home');
-          //   Navigator.push(
-          //     context,
-          //     MaterialPageRoute(builder: (context) => HomeScreen()),
-          //   );
-          // }
+          // Navigator.pushNamed(context, '/home');
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HomeScreen()),
+          );
         },
       ),
     );
