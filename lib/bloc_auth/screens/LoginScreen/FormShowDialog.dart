@@ -10,8 +10,23 @@ class FormShowDialog {
       builder: (context) => BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
         child: AlertDialog(
-          title: Text('ເຄື່ອຂ່າຍອິນເຕີເນັດ'),
-          content: Text(message),
+          title: Text(
+            'ເຄື່ອຂ່າຍອິນເຕີເນັດ',
+            style: TextStyle(
+              fontFamily: 'NotoSansLao',
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+          ),
+          content: Text(
+            message,
+            style: TextStyle(
+              fontFamily: 'NotoSansLao',
+              color: Colors.black,
+              fontSize: 16,
+            ),
+          ),
           actions: [
             ElevatedButton(
               style: ElevatedButton.styleFrom(

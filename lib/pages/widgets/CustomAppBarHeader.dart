@@ -6,30 +6,19 @@ import 'package:svn_costing_profit/contact/HaxColors.dart';
 class CustomAppBarHeader extends StatelessWidget
     implements PreferredSizeWidget {
   final String title;
+  final String employeecode;
+  final String fullname;
   final double barHeight = 85;
 
-  CustomAppBarHeader({required this.title});
+  CustomAppBarHeader({
+    required this.title,
+    required this.employeecode,
+    required this.fullname,
+  });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(
-        title,
-        textAlign: TextAlign.right,
-        style: TextStyle(
-          fontFamily: 'NotoSansLao',
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 16,
-          shadows: [
-            Shadow(
-              color: Colors.grey,
-              blurRadius: 10.0,
-              offset: Offset(5.0, 5.0),
-            ),
-          ],
-        ),
-      ),
       centerTitle: true,
       backgroundColor: HaxColor.colorOrange,
       shape: RoundedRectangleBorder(
@@ -75,14 +64,61 @@ class CustomAppBarHeader extends StatelessWidget
                 ),
               ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      title,
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                        fontFamily: 'NotoSansLao',
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        shadows: [
+                          Shadow(
+                            color: Colors.grey,
+                            blurRadius: 10.0,
+                            offset: Offset(5.0, 5.0),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                        width:
+                            8.0), // Add space between the title and employeecode
+                    Text(
+                      employeecode,
+                      style: TextStyle(
+                        fontFamily: 'NotoSansLao',
+                        color: Colors.white,
+                        fontSize: 14,
+                      ),
+                    ),
+                    Text(
+                      fullname,
+                      textAlign: TextAlign.right, // Align the text to the right
+                      style: TextStyle(
+                        fontFamily: 'NotoSansLao',
+                        color: Colors.white,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ],
         ),
       ),
       bottom: PreferredSize(
         preferredSize: Size.fromHeight(10.0),
         child: Padding(
-          padding:
-              EdgeInsets.only(bottom: 10.0), // Set the bottom padding to 20.0
+          padding: EdgeInsets.only(bottom: 10.0),
           child: Container(
             decoration: BoxDecoration(
               color: Colors.yellow,

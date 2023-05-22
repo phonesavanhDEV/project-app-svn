@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:svn_costing_profit/contact/HaxColors.dart';
 
 import 'navigation/dashboard.dart';
-import 'navigation/notifications.dart';
+
 import 'navigation/setting.dart';
 import 'widgets/CustomAppBarHeader.dart';
 
@@ -16,7 +16,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _children = [
     Dashboard(),
-    Notifications(),
     Settings(),
   ];
 
@@ -31,6 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: CustomAppBarHeader(
         title: 'SouvannyCosting',
+        employeecode: 'HO20220601001',
+        fullname: 'Phonesavanh',
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: Theme(

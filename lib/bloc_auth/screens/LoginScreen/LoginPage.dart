@@ -9,6 +9,7 @@ import '../../login/LoginEvent.dart';
 import '../../login/LoginState.dart';
 import '../RegisterScreen/RegisterPage.dart';
 import 'FormShowDialog.dart';
+import 'package:flutter/services.dart';
 
 class LoginPage extends StatefulWidget {
   final LoginBloc loginBloc;
@@ -30,6 +31,10 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     internetConnectivity.startMonitoringConnectivity((isConnected) {
       if (!isConnected) {
         FormShowDialog.showAlertDialog(
@@ -40,6 +45,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
+    SystemChrome.setPreferredOrientations(DeviceOrientation.values);
     internetConnectivity.stopMonitoringConnectivity();
     super.dispose();
   }
