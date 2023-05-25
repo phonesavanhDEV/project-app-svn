@@ -166,8 +166,19 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        title: 'ສ້າງບັນຊີໃໝ່',
+      // appBar: CustomAppBar(
+      //   title: 'ສ້າງບັນຊີໃໝ່',
+      // ),
+      appBar: AppBar(
+        title: Text(
+          'ສ້າງບັນຊີໃໝ່',
+          style: TextStyle(
+            fontSize: 20.0,
+            color: Colors.white,
+            fontFamily: 'NotoSansLao',
+          ),
+        ),
+        backgroundColor: HaxColor.colorOrange,
       ),
       body: BlocProvider(
         create: (context) => SignUpCubit(),

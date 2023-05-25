@@ -32,18 +32,19 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-          child: Column(
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+    return Container(
+      alignment: Alignment.topCenter,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          double paddingValue = MediaQuery.of(context).size.width * 0.02;
+          return Wrap(
+            alignment: WrapAlignment.start,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(paddingValue),
                 child: SizedBox(
-                  width: 125.0,
-                  height: 100.0,
+                  width: 165.0,
+                  height: 150.0,
                   child: MaterialButton(
                     color: Colors.orangeAccent,
                     child: Column(
@@ -52,14 +53,14 @@ class _DashboardState extends State<Dashboard> {
                       children: [
                         Image.asset(
                           'assets/images/money-white.png',
-                          width: 50.0,
-                          height: 50.0,
+                          width: 80.0,
+                          height: 80.0,
                           fit: BoxFit.fill,
                         ),
                         Text(
                           "ແຜນປະເມີນການຕົ້ນທຶນ&ກຳໄລ",
                           style: TextStyle(
-                            fontSize: 10.0,
+                            fontSize: 11.5,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                             fontFamily: 'NotoSansLao',
@@ -81,58 +82,32 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(paddingValue),
                 child: SizedBox(
-                  width: 125.0,
-                  height: 100.0,
+                  width: 165.0,
+                  height: 150.0,
                   child: MaterialButton(
                     color: Colors.orangeAccent,
-                    child: Text(
-                      "",
-                      style: TextStyle(
-                        fontSize: 10.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontFamily: 'NotoSansLao',
-                      ),
-                    ),
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text("coming soon...!!!"),
-                        backgroundColor: Colors.red,
-                      ));
-                    },
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                      side: BorderSide(
-                        color: Colors.white,
-                        width: 2.0,
-                      ),
-                    ),
-                    splashColor: Colors.redAccent,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.all(20.0),
-                child: SizedBox(
-                  width: 125.0,
-                  height: 100.0,
-                  child: MaterialButton(
-                    color: Colors.orangeAccent,
-                    child: Text(
-                      "",
-                      style: TextStyle(
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontFamily: 'NotoSansLao',
-                      ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        // Image.asset(
+                        //   'assets/images/money-white.png',
+                        //   width: 80.0,
+                        //   height: 80.0,
+                        //   fit: BoxFit.fill,
+                        // ),
+                        Text(
+                          "",
+                          style: TextStyle(
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontFamily: 'NotoSansLao',
+                          ),
+                        ),
+                      ],
                     ),
                     onPressed: () {},
                     shape: RoundedRectangleBorder(
@@ -147,55 +122,32 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(paddingValue),
                 child: SizedBox(
-                  width: 125.0,
-                  height: 100.0,
+                  width: 165.0,
+                  height: 150.0,
                   child: MaterialButton(
                     color: Colors.orangeAccent,
-                    child: Text(
-                      "",
-                      style: TextStyle(
-                        fontSize: 10.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontFamily: 'NotoSansLao',
-                      ),
-                    ),
-                    onPressed: () {
-                      // Do something when the button is pressed.
-                    },
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                      side: BorderSide(
-                        color: Colors.white,
-                        width: 2.0,
-                      ),
-                    ),
-                    splashColor: Colors.redAccent,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.all(20.0),
-                child: SizedBox(
-                  width: 125.0,
-                  height: 100.0,
-                  child: MaterialButton(
-                    color: Colors.orangeAccent,
-                    child: Text(
-                      "",
-                      style: TextStyle(
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontFamily: 'NotoSansLao',
-                      ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        // Image.asset(
+                        //   'assets/images/money-white.png',
+                        //   width: 80.0,
+                        //   height: 80.0,
+                        //   fit: BoxFit.fill,
+                        // ),
+                        Text(
+                          "",
+                          style: TextStyle(
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontFamily: 'NotoSansLao',
+                          ),
+                        ),
+                      ],
                     ),
                     onPressed: () {},
                     shape: RoundedRectangleBorder(
@@ -210,24 +162,34 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(paddingValue),
                 child: SizedBox(
-                  width: 125.0,
-                  height: 100.0,
+                  width: 165.0,
+                  height: 150.0,
                   child: MaterialButton(
                     color: Colors.orangeAccent,
-                    child: Text(
-                      "",
-                      style: TextStyle(
-                        fontSize: 10.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontFamily: 'NotoSansLao',
-                      ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        // Image.asset(
+                        //   'assets/images/money-white.png',
+                        //   width: 80.0,
+                        //   height: 80.0,
+                        //   fit: BoxFit.fill,
+                        // ),
+                        Text(
+                          "",
+                          style: TextStyle(
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontFamily: 'NotoSansLao',
+                          ),
+                        ),
+                      ],
                     ),
-                    onPressed: () {
-                      // Do something when the button is pressed.
-                    },
+                    onPressed: () {},
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                       side: BorderSide(
@@ -240,9 +202,9 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
             ],
-          ),
-        ],
-      )),
+          );
+        },
+      ),
     );
   }
 }

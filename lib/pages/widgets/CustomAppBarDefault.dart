@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:svn_costing_profit/contact/HaxColors.dart';
 import 'package:svn_costing_profit/pages/HomePage.dart';
 
+import '../../bloc_auth/models/User.dart';
+
 class CustomAppBarDefault extends StatelessWidget
     implements PreferredSizeWidget {
   final String title;
   final double barHeight = 25;
+  final User user;
 
-  CustomAppBarDefault({required this.title});
+  CustomAppBarDefault({required this.title, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +38,7 @@ class CustomAppBarDefault extends StatelessWidget
           // Navigator.pushNamed(context, '/home');
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => HomeScreen()),
+            MaterialPageRoute(builder: (context) => HomeScreen(user: user)),
           );
         },
       ),

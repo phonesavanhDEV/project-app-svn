@@ -21,16 +21,6 @@ class SignUpCubit extends Cubit<SignUpState> {
         'userfullname': userfullname,
         'extracode': extracode
       },
-      // headers: {
-      //   'Content-Type': 'application/json',
-      // },
-      // body: jsonEncode({
-      //   'username': username,
-      //   'userpassword': userpassword,
-      //   'employeecode': employeecode,
-      //   'userfullname': userfullname,
-      //   'extracode': extracode,
-      // }),
     );
 
     if (response.statusCode == 200) {

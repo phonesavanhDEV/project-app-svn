@@ -31,7 +31,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: IconButton(
         icon: Icon(Icons.arrow_back_ios),
         onPressed: () {
-          Navigator.pushNamed(context, '/login');
+          //Navigator.pushNamed(context, '/home');
+
           // if (title == 'ສ້າງບັນຊີໃໝ່') {
           //   Navigator.pushNamed(context, '/login');
           // } else {

@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:svn_costing_profit/contact/HaxColors.dart';
+import 'package:svn_costing_profit/pages/CostAndProfitEvaluationPlan/widgetAlertSearch.dart';
 
 import '../../bloc_auth/screens/LoginScreen/FormShowDialog.dart';
 import '../../network/CheckNetwork.dart';
@@ -11,6 +14,17 @@ class CostProfit extends StatefulWidget {
 
 class _CostProfit extends State<CostProfit> {
   final InternetConnectivity internetConnectivity = InternetConnectivity();
+  final _ProductID = TextEditingController();
+
+  String dropdownvalue = 'Item 1';
+
+  var items = [
+    'Item 1',
+    'Item 2',
+    'Item 3',
+    'Item 4',
+    'Item 5',
+  ];
 
   @override
   void initState() {
@@ -30,6 +44,13 @@ class _CostProfit extends State<CostProfit> {
     super.dispose();
   }
 
+  void _showAlert() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialogSearch(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +68,7 @@ class _CostProfit extends State<CostProfit> {
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () {
-              // Perform search operation
+              _showAlert();
             },
           ),
         ],

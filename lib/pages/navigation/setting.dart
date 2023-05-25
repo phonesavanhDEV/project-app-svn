@@ -1,81 +1,132 @@
 import 'package:flutter/material.dart';
 
-class Settings extends StatelessWidget {
+import '../../bloc_auth/models/User.dart';
+import '../../bloc_auth/screens/RegisterScreen/RegisterPage.dart';
+import '../../bloc_auth/widgets/getUser.dart';
+
+class Settings extends StatefulWidget {
+  @override
+  _SettingsState createState() => _SettingsState();
+}
+
+class _SettingsState extends State<Settings> {
+  final _userController = TextEditingController();
+
+  @override
+  void dispose() {
+    _userController.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // body: Container(
-        //   padding: EdgeInsets.all(16.0),
-        //   child: Column(
-        //     crossAxisAlignment: CrossAxisAlignment.center,
-        //     children: [
-        //       CircleAvatar(
-        //         radius: 60.0,
-        //         backgroundImage: AssetImage('assets/images/image_screen.jpg'),
-        //       ),
-        //       SizedBox(height: 16.0),
-        //       Text(
-        //         'John Doe',
-        //         style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-        //       ),
-        //       SizedBox(height: 8.0),
-        //       Text(
-        //         'Software Engineer',
-        //         style: TextStyle(fontSize: 16.0, color: Colors.grey),
-        //       ),
-        //       SizedBox(height: 16.0),
-        //       // Row(
-        //       //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        //       //   children: [
-        //       //     Column(
-        //       //       children: [
-        //       //         Text(
-        //       //           'Posts',
-        //       //           style: TextStyle(fontSize: 16.0, color: Colors.grey),
-        //       //         ),
-        //       //         SizedBox(height: 8.0),
-        //       //         Text(
-        //       //           '42',
-        //       //           style: TextStyle(fontSize: 20.0),
-        //       //         ),
-        //       //       ],
-        //       //     ),
-        //       //     Column(
-        //       //       children: [
-        //       //         Text(
-        //       //           'Followers',
-        //       //           style: TextStyle(fontSize: 16.0, color: Colors.grey),
-        //       //         ),
-        //       //         SizedBox(height: 8.0),
-        //       //         Text(
-        //       //           '1.2K',
-        //       //           style: TextStyle(fontSize: 20.0),
-        //       //         ),
-        //       //       ],
-        //       //     ),
-        //       //     Column(
-        //       //       children: [
-        //       //         Text(
-        //       //           'Following',
-        //       //           style: TextStyle(fontSize: 16.0, color: Colors.grey),
-        //       //         ),
-        //       //         SizedBox(height: 8.0),
-        //       //         Text(
-        //       //           '523',
-        //       //           style: TextStyle(fontSize: 20.0),
-        //       //         ),
-        //       //       ],
-        //       //     ),
-        //       //   ],
-        //       // ),
-        //       // SizedBox(height: 16.0),
-        //       // ElevatedButton(
-        //       //   onPressed: () {},
-        //       //   child: Text('Edit Profile'),
-        //       // ),
-        //     ],
-        //   ),
-        // ),
-        );
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            SizedBox(
+              width: double.infinity,
+              height: 55,
+              child: ElevatedButton(
+                onPressed: () => Navigator.pushNamed(context, '/register'),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.orangeAccent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.account_circle_sharp,
+                      color: Colors.white,
+                    ),
+                    SizedBox(width: 8),
+                    Text(
+                      "ສ້າງບັນຊີຜູ້ໃຊ້",
+                      style: TextStyle(
+                        fontFamily: 'NotoSansLao',
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 16.0),
+            SizedBox(
+              width: double.infinity,
+              height: 55,
+              child: ElevatedButton(
+                onPressed: () =>
+                    Navigator.pushNamed(context, '/changePassword'),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.orangeAccent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.password,
+                      color: Colors.white,
+                    ),
+                    SizedBox(width: 8),
+                    Text(
+                      "ປ່ຽນລະຫັດ",
+                      style: TextStyle(
+                        fontFamily: 'NotoSansLao',
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 16.0),
+            // SizedBox(
+            //   width: double.infinity,
+            //   height: 55,
+            //   child: ElevatedButton(
+            //     onPressed: () {},
+            //     // onPressed: () =>
+            //     //     Navigator.pushNamed(context, '/changePassword'),
+            //     style: ElevatedButton.styleFrom(
+            //       primary: Colors.orangeAccent,
+            //       shape: RoundedRectangleBorder(
+            //         borderRadius: BorderRadius.circular(15),
+            //       ),
+            //     ),
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.center,
+            //       children: [
+            //         Icon(
+            //           Icons.info,
+            //           color: Colors.white,
+            //         ),
+            //         SizedBox(width: 8),
+            //         Text(
+            //           "ກ່ຽວກັບ",
+            //           style: TextStyle(
+            //             fontFamily: 'NotoSansLao',
+            //             color: Colors.white,
+            //             fontSize: 18,
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+          ],
+        ),
+      ),
+    );
   }
 }

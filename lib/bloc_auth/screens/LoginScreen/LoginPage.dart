@@ -7,6 +7,8 @@ import '../../../pages/HomePage.dart';
 import '../../login/LoginBloc.dart';
 import '../../login/LoginEvent.dart';
 import '../../login/LoginState.dart';
+import '../../models/User.dart';
+import '../../widgets/getUser.dart';
 import '../RegisterScreen/RegisterPage.dart';
 import 'FormShowDialog.dart';
 import 'package:flutter/services.dart';
@@ -31,10 +33,10 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //   DeviceOrientation.portraitUp,
+    //   DeviceOrientation.portraitDown,
+    // ]);
     internetConnectivity.startMonitoringConnectivity((isConnected) {
       if (!isConnected) {
         FormShowDialog.showAlertDialog(
@@ -45,7 +47,13 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
-    SystemChrome.setPreferredOrientations(DeviceOrientation.values);
+    //SystemChrome.setPreferredOrientations(DeviceOrientation.values);
+    // SystemChrome.setPreferredOrientations([
+    //   DeviceOrientation.portraitUp,
+    //   DeviceOrientation.portraitDown,
+    //   DeviceOrientation.landscapeRight,
+    //   DeviceOrientation.landscapeLeft,
+    // ]);
     internetConnectivity.stopMonitoringConnectivity();
     super.dispose();
   }
@@ -118,8 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                                   BorderSide(color: HaxColor.colorOrange)),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
-                              borderSide:
-                                  BorderSide(color: HaxColor.colorOrange)),
+                              borderSide: BorderSide(color: Colors.white)),
                         ),
                       ),
                     ),
@@ -147,7 +154,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
-                            borderSide: BorderSide(color: HaxColor.colorOrange),
+                            borderSide: BorderSide(color: Colors.white),
                           ),
                           suffixIcon: IconButton(
                             icon: Icon(
@@ -165,33 +172,36 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(right: 35.0),
-                          child: TextButton(
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => RegisterPage(),
-                                ),
-                              );
-                            },
-                            child: Text(
-                              'ສ້າງບັນຊີໃໝ່', //Create a new account
-                              style: TextStyle(
-                                color: HaxColor.colorOrange,
-                                fontFamily: 'NotoSansLao',
-                                //fontWeight: FontWeight.bold,
-                                //fontStyle: FontStyle.italic,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.end,
+                    //   children: [
+                    //     Padding(
+                    //       padding: EdgeInsets.only(right: 35.0),
+                    //       child: TextButton(
+                    //         onPressed: () {
+                    //           Navigator.pushReplacement(
+                    //             context,
+                    //             MaterialPageRoute(
+                    //               builder: (context) => RegisterPage(),
+                    //             ),
+                    //           );
+                    //         },
+                    //         child: Text(
+                    //           'ສ້າງບັນຊີໃໝ່', //Create a new account
+                    //           style: TextStyle(
+                    //             color: HaxColor.colorOrange,
+                    //             fontFamily: 'NotoSansLao',
+                    //             //fontWeight: FontWeight.bold,
+                    //             //fontStyle: FontStyle.italic,
+                    //             fontSize: 12,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    SizedBox(
+                      height: 12,
                     ),
                     Container(
                         height: 50,
@@ -214,8 +224,9 @@ class _LoginPageState extends State<LoginPage> {
 
                             final loginBloc =
                                 BlocProvider.of<LoginBloc>(context);
-                            final username = _userController.text;
-                            final userpassword = _passwordController.text;
+                            final username = _userController.text.trim();
+                            final userpassword =
+                                _passwordController.text.trim();
 
                             // Dispatch the LoginButtonPressed event to the LoginBloc
                             loginBloc.add(LoginButtonPressed(
@@ -228,11 +239,15 @@ class _LoginPageState extends State<LoginPage> {
                                     state is LoginFailure);
 
                             if (result is LoginSuccess) {
+                              User user = await fetchUserData(
+                                  _userController.text.trim());
+
                               Navigator.pop(context);
-                              Navigator.pushReplacement(
+
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => HomeScreen(),
+                                  builder: (context) => HomeScreen(user: user),
                                 ),
                               );
                             } else if (result is LoginFailure) {

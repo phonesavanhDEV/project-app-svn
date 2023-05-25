@@ -8,7 +8,7 @@ class CustomAppBarHeader extends StatelessWidget
   final String title;
   final String employeecode;
   final String fullname;
-  final double barHeight = 85;
+  final double barHeight = 75;
 
   CustomAppBarHeader({
     required this.title,
@@ -36,34 +36,34 @@ class CustomAppBarHeader extends StatelessWidget
         ),
         child: Stack(
           children: [
-            Positioned(
-              left: 16.0,
-              bottom: 16.0,
-              child: Transform(
-                alignment: Alignment.center,
-                transform: Matrix4.rotationY(pi),
-                child: Transform(
-                  alignment: Alignment.center,
-                  transform: Matrix4.rotationY(pi),
-                  child: Container(
-                    width: 100.0,
-                    height: 100.0,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: Colors.white,
-                        width: 2.0,
-                      ),
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/new_souvanny.png'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    padding: EdgeInsets.all(8.0),
-                  ),
-                ),
-              ),
-            ),
+            // Positioned(
+            //   left: 16.0,
+            //   bottom: 16.0,
+            //   child: Transform(
+            //     alignment: Alignment.center,
+            //     transform: Matrix4.rotationY(pi),
+            //     child: Transform(
+            //       alignment: Alignment.center,
+            //       transform: Matrix4.rotationY(pi),
+            //       child: Container(
+            //         width: 100.0,
+            //         height: 100.0,
+            //         decoration: BoxDecoration(
+            //           shape: BoxShape.circle,
+            //           border: Border.all(
+            //             color: Colors.white,
+            //             width: 2.0,
+            //           ),
+            //           image: DecorationImage(
+            //             image: AssetImage('assets/images/new_souvanny.png'),
+            //             fit: BoxFit.cover,
+            //           ),
+            //         ),
+            //         padding: EdgeInsets.all(8.0),
+            //       ),
+            //     ),
+            //   ),
+            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
