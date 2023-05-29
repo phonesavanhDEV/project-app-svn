@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:svn_costing_profit/bloc_auth/screens/ChangePassword/ChangePasswordPage.dart';
 import 'package:svn_costing_profit/bloc_auth/screens/RegisterScreen/RegisterPage.dart';
+import 'package:svn_costing_profit/bloc_auth/screens/SearchData/SearchCosting.dart';
 import 'package:svn_costing_profit/pages/CostAndProfitEvaluationPlan/CostProfit.dart';
 import 'package:svn_costing_profit/pages/HomePage.dart';
 
 import '../bloc_auth/login/LoginBloc.dart';
-import '../bloc_auth/models/User.dart';
+import '../bloc_auth/models/modelsUser/User.dart';
 import '../bloc_auth/screens/LoginScreen/LoginPage.dart';
 
 class RouteController {
@@ -43,6 +44,9 @@ class RouteController {
 
       case '/changePassword':
         return MaterialPageRoute(builder: (_) => ChangePasswordPage());
+
+      case '/searchCosting':
+        return MaterialPageRoute(builder: (_) => SearchCosting());
 
       default:
         return MaterialPageRoute(

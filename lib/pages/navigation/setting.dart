@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../bloc_auth/models/User.dart';
+import '../../bloc_auth/models/modelsUser/User.dart';
 import '../../bloc_auth/screens/RegisterScreen/RegisterPage.dart';
 import '../../bloc_auth/widgets/getUser.dart';
 

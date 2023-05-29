@@ -9,8 +9,26 @@ class AlertDialogSearch extends StatefulWidget {
 class _AlertDialogSearch extends State<AlertDialogSearch> {
   TextEditingController _productIDController = TextEditingController();
 
-  String _dropdownvalue = 'Option 1';
-  List<String> items = ['Option 1', 'Option 2', 'Option 3'];
+  String _dropdownvalue = 'Option1';
+  List<String> items = ['Option1', 'Option2', 'Option3'];
+  String _dropdownbranch = 'ສາຂາ ໂພນຕ້ອງ';
+  List<String> itembranch = [
+    'ສາຂາ ໂພນຕ້ອງ',
+    'ສາຂາ ສີໄຄ',
+    'ສາຂາ HOS',
+    'ສາຂາ ທົ່ງຕູມ',
+    'ສາຂາ ໂຊກໃຫຍ່',
+    'HeadOffice',
+    'ສາຂາ ປາກຊັນ',
+    'ສາຂາ ປາກເຊ',
+    'ສາຂາ VAT FREE',
+    'ສາຂາ ສະຫວັນນະເຂດ',
+    'ສາຂາ ອຸດົມໄຊ',
+    'ສາຂາ ຫຼວງພະບາງ',
+    'ສາຂາ ວັງວຽງ',
+    'ສາຂາ ສົມສະນຸກ',
+    'ສາຂາ ທ່າແຂກ'
+  ];
 
   @override
   void dispose() {
@@ -276,9 +294,9 @@ class _AlertDialogSearch extends State<AlertDialogSearch> {
                     ),
                   ),
                   isExpanded: true,
-                  value: _dropdownvalue,
+                  value: _dropdownbranch,
                   icon: const Icon(Icons.keyboard_arrow_down),
-                  items: items.map((String item) {
+                  items: itembranch.map((String item) {
                     return DropdownMenuItem(
                       value: item,
                       child: Align(
@@ -289,7 +307,7 @@ class _AlertDialogSearch extends State<AlertDialogSearch> {
                   }).toList(),
                   onChanged: (String? newValue) {
                     setState(() {
-                      _dropdownvalue = newValue!;
+                      _dropdownbranch = newValue!;
                     });
                   },
                 ),

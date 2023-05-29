@@ -18,4 +18,10 @@ class pathContact {
   String getRepoPathUser() {
     return _repoPathUser;
   }
+
+  String _repoPathChangePassowrd =
+      'https://souvanny.la/costing/CostingAPI/system/iChangePassword';
+  String getRepoPathChangePassword() {
+    return _repoPathChangePassowrd;
+  }
 }

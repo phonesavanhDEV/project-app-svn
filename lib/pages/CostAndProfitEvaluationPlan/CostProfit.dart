@@ -67,9 +67,7 @@ class _CostProfit extends State<CostProfit> {
         actions: [
           IconButton(
             icon: Icon(Icons.search),
-            onPressed: () {
-              _showAlert();
-            },
+            onPressed: () => Navigator.pushNamed(context, '/searchCosting'),
           ),
         ],
       ),

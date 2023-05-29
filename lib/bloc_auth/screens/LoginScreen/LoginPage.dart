@@ -7,7 +7,7 @@ import '../../../pages/HomePage.dart';
 import '../../login/LoginBloc.dart';
 import '../../login/LoginEvent.dart';
 import '../../login/LoginState.dart';
-import '../../models/User.dart';
+import '../../models/modelsUser/User.dart';
 import '../../widgets/getUser.dart';
 import '../RegisterScreen/RegisterPage.dart';
 import 'FormShowDialog.dart';
@@ -285,6 +285,16 @@ class _LoginPageState extends State<LoginPage> {
                         )),
                     SizedBox(
                       height: 16,
+                    ),
+                    Text(
+                      'version 1.0.1', //Create a new account
+                      style: TextStyle(
+                        color: HaxColor.colorOrange,
+                        fontFamily: 'NotoSansLao',
+                        //fontWeight: FontWeight.bold,
+                        //fontStyle: FontStyle.italic,
+                        fontSize: 12,
+                      ),
                     ),
                     SizedBox(
                       height: 30,

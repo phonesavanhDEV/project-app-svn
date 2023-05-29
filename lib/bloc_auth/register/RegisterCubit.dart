@@ -9,7 +9,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   final pathContact contactPath = pathContact();
 
   void signUp(String username, String userpassword, String employeecode,
-      String userfullname, String extracode) async {
+      String userfullname) async {
     emit(SignUpLoading());
 
     final response = await http.post(
@@ -18,8 +18,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         'username': username,
         'userpassword': userpassword,
         'employeecode': employeecode,
-        'userfullname': userfullname,
-        'extracode': extracode
+        'userfullname': userfullname
       },
     );
 

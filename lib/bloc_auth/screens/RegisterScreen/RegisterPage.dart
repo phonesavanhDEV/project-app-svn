@@ -26,7 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final _confirmpasswordController = TextEditingController();
   final _employeecodeController = TextEditingController();
   final _namefullController = TextEditingController();
-  final _extracodeController = TextEditingController();
+
   bool _obscureText = true;
   bool _obscureText2 = true;
   String _passwordStrength = '';
@@ -248,7 +248,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           if (value!.isEmpty) {
                             return '*';
                           } else if (_passwordStrength == 'low') {
-                            return 'ລະຫັດຄວນມີໂຕໃຫຍ່, ຕົວເລກ, ຕົວອັກສອນພິເສດ...';
+                            return 'ລະຫັດຄວນມີໂຕໃຫຍ່, ຕົວເລກ, ຕົວອັກສອນພິເສດ ແລະ ຕົວອັກສອນຕ່ຳກວ່າ 8 ';
                           } else {
                             return null;
                           }
@@ -341,28 +341,28 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                       SizedBox(height: 16.0),
-                      TextFormField(
-                        controller: _extracodeController,
-                        decoration: InputDecoration(
-                          labelText: 'ExtraCode',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide(color: HaxColor.colorOrange),
-                          ),
-                        ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return '*';
-                          }
-                          return null;
-                        },
-                        style: TextStyle(
-                          fontFamily: 'NotoSansLao',
-                          color: Colors.black,
-                          fontSize: 16,
-                        ),
-                      ),
-                      SizedBox(height: 16.0),
+                      // TextFormField(
+                      //   controller: _extracodeController,
+                      //   decoration: InputDecoration(
+                      //     labelText: 'ExtraCode',
+                      //     border: OutlineInputBorder(
+                      //       borderRadius: BorderRadius.circular(15),
+                      //       borderSide: BorderSide(color: HaxColor.colorOrange),
+                      //     ),
+                      //   ),
+                      //   validator: (value) {
+                      //     if (value!.isEmpty) {
+                      //       return '*';
+                      //     }
+                      //     return null;
+                      //   },
+                      //   style: TextStyle(
+                      //     fontFamily: 'NotoSansLao',
+                      //     color: Colors.black,
+                      //     fontSize: 16,
+                      //   ),
+                      // ),
+                      // SizedBox(height: 16.0),
                       SizedBox(
                         width: double.infinity,
                         height: 55,
@@ -383,8 +383,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 _passwordController.text.isEmpty &&
                                 _confirmpasswordController.text.isEmpty &&
                                 _employeecodeController.text.isEmpty &&
-                                _namefullController.text.isEmpty &&
-                                _extracodeController.text.isEmpty) {
+                                _namefullController.text.isEmpty) {
                               Navigator.pop(context);
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
@@ -424,15 +423,9 @@ class _RegisterPageState extends State<RegisterPage> {
                             final employeeCode =
                                 _employeecodeController.text.trim();
                             final fullName = _namefullController.text.trim();
-                            final extraCode = _extracodeController.text.trim();
 
                             context.read<SignUpCubit>().signUp(
-                                  username,
-                                  password,
-                                  employeeCode,
-                                  fullName,
-                                  extraCode,
-                                );
+                                username, password, employeeCode, fullName);
                           },
                           style: ElevatedButton.styleFrom(
                             primary: HaxColor.colorOrange,

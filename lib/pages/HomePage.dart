@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:svn_costing_profit/contact/HaxColors.dart';
 
-import '../bloc_auth/models/User.dart';
+import '../bloc_auth/models/modelsUser/User.dart';
 import 'navigation/dashboard.dart';
 
 import 'navigation/setting.dart';

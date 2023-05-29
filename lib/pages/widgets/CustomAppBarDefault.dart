@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:svn_costing_profit/contact/HaxColors.dart';
 import 'package:svn_costing_profit/pages/HomePage.dart';
 
-import '../../bloc_auth/models/User.dart';
+import '../../bloc_auth/models/modelsUser/User.dart';
 
 class CustomAppBarDefault extends StatelessWidget
     implements PreferredSizeWidget {

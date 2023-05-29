@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../../path/pathContact.dart';
-import '../models/User.dart';
+import '../models/modelsUser/User.dart';
 
 Future<User> fetchUserData(String username) async {
   final pathContact contactPath = pathContact();
