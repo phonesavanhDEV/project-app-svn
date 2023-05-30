@@ -1,7 +1,4 @@
 class User {
-  // final int user_id;
-  // final String username;
-  // final String userpassword;
   final String employee_code;
   final String user_fullname;
 

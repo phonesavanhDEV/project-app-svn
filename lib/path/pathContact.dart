@@ -36,4 +36,16 @@ class pathContact {
   String getRepoPathProductCategory() {
     return _repoPathProductCategory;
   }
+
+  String _repoPathProductGroup =
+      'https://souvanny.la/costing/CostingAPI/system/MasterProductGroup';
+  String getRepoPathProductGroup() {
+    return _repoPathProductGroup;
+  }
+
+  String _repoPathProductBrand =
+      'https://souvanny.la/costing/CostingAPI/system/MasterProductBrand';
+  String getRepoPathProductBrand() {
+    return _repoPathProductBrand;
+  }
 }

@@ -1,12 +1,16 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:svn_costing_profit/bloc_auth/screens/SearchData/widgetClass/WidgetBranch.dart';
+import 'package:svn_costing_profit/bloc_auth/screens/SearchData/widgetClass/WidgetBrand.dart';
+import 'package:svn_costing_profit/bloc_auth/screens/SearchData/widgetClass/WidgetGroup.dart';
 
 import '../../../contact/HaxColors.dart';
 import '../../../path/pathContact.dart';
 import '../../models/UserModel.dart';
 import '../../models/modelBranch/branchModel.dart';
+import '../../models/modelProductBrand/productBrandModel.dart';
 import '../../models/modelProductCategory/productCategoryModel.dart';
+import '../../models/modelProductGroup/productGroupModel.dart';
 import 'widgetClass/WidgetCategory.dart';
 import 'dart:convert';
 
@@ -119,7 +123,7 @@ class _SearchCostingState extends State<SearchCosting> {
               Row(
                 children: [
                   Expanded(
-                    child: DropdownSearch<UserModel>(
+                    child: DropdownSearch<ProductGroupModel>(
                       dropdownDecoratorProps: DropDownDecoratorProps(
                         dropdownSearchDecoration: InputDecoration(
                           hintText: "ກຸ່ມສິນຄ້າ",
@@ -128,14 +132,17 @@ class _SearchCostingState extends State<SearchCosting> {
                           ),
                         ),
                       ),
-                      //asyncItems: (filter) => getData(filter),
+                      clearButtonProps: ClearButtonProps(isVisible: true),
+                      asyncItems: (filter) => getDataGroup(filter),
                       compareFn: (i, s) => i.isEqual(s),
-                      //itemAsString: (UserModel u) => u.name,
+                      itemAsString: (ProductGroupModel u) => u.productGroupCode,
                       popupProps: PopupPropsMultiSelection.dialog(
                         isFilterOnline: true,
-                        showSelectedItems: true,
                         showSearchBox: true,
-                        //itemBuilder: _customPopupItemBuilderExample2,
+                        itemBuilder: (context, item, isSelected) =>
+                            GroupProduct(
+                          item: item,
+                        ),
                       ),
                     ),
                   ),
@@ -145,7 +152,7 @@ class _SearchCostingState extends State<SearchCosting> {
               Row(
                 children: [
                   Expanded(
-                    child: DropdownSearch<UserModel>(
+                    child: DropdownSearch<ProductBrandModel>(
                       dropdownDecoratorProps: DropDownDecoratorProps(
                         dropdownSearchDecoration: InputDecoration(
                           hintText: "ຍີ່ຫໍ້ສິນຄ້າ",
@@ -154,14 +161,18 @@ class _SearchCostingState extends State<SearchCosting> {
                           ),
                         ),
                       ),
-                      // asyncItems: (filter) => getData(filter),
+                      clearButtonProps: ClearButtonProps(isVisible: true),
+                      asyncItems: (filter) => getDataBrand(filter),
                       compareFn: (i, s) => i.isEqual(s),
-                      //itemAsString: (UserModel u) => u.name,
+                      itemAsString: (ProductBrandModel u) => u.BrandName,
                       popupProps: PopupPropsMultiSelection.dialog(
                         isFilterOnline: true,
                         showSelectedItems: true,
                         showSearchBox: true,
-                        //itemBuilder: _customPopupItemBuilderExample2,
+                        itemBuilder: (context, item, isSelected) =>
+                            BrandProduct(
+                          item: item,
+                        ),
                       ),
                     ),
                   ),

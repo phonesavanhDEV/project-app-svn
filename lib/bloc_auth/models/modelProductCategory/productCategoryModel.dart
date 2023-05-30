@@ -22,7 +22,7 @@ class ProductCategoryModel {
 
   @override
   String toString() {
-    return 'BranchModel{CategoryCode: $CategoryCode, CategoryName: $CategoryName}';
+    return 'ProductCategoryModel{CategoryCode: $CategoryCode, CategoryName: $CategoryName}';
   }
 
   bool isEqual(ProductCategoryModel s) {

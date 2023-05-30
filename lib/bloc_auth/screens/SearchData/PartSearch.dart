@@ -58,3 +58,61 @@ Future<List<ProductCategoryModel>> getDataCategory(String? filter) async {
     return [];
   }
 }
+
+Future<List<ProductGroupModel>> getDataGroup(String? filter) async {
+  try {
+    var url = Uri.parse(pathContact().getRepoPathProductGroup());
+
+    var response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      List<ProductGroupModel> productGroup = [];
+      var jsonData = jsonDecode(response.body);
+      for (var groupData in jsonData) {
+        ProductGroupModel group = ProductGroupModel.fromJson(groupData);
+        if (filter == null ||
+            group.productGroupCode.contains(filter) ||
+            group.productGroupName.contains(filter)) {
+          productGroup.add(group);
+        }
+      }
+
+      return productGroup;
+    } else {
+      print('HTTP request failed with status code: ${response.statusCode}');
+      return [];
+    }
+  } catch (error) {
+    print('Error retrieving data: $error');
+    return [];
+  }
+}
+
+Future<List<ProductBrandModel>> getDataBrand(String? filter) async {
+  try {
+    var url = Uri.parse(pathContact().getRepoPathProductBrand());
+
+    var response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      List<ProductBrandModel> productBrand = [];
+      var jsonData = jsonDecode(response.body);
+      for (var brandData in jsonData) {
+        ProductBrandModel brand = ProductBrandModel.fromJson(brandData);
+        if (filter == null ||
+            brand.BrandCode.contains(filter) ||
+            brand.BrandName.contains(filter)) {
+          productBrand.add(brand);
+        }
+      }
+
+      return productBrand;
+    } else {
+      print('HTTP request failed with status code: ${response.statusCode}');
+      return [];
+    }
+  } catch (error) {
+    print('Error retrieving data: $error');
+    return [];
+  }
+}
