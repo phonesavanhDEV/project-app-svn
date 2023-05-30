@@ -24,4 +24,8 @@ class BranchModel {
   String toString() {
     return 'BranchModel{branchCode: $branchCode, branchName: $branchName}';
   }
+
+  bool isEqual(BranchModel s) {
+    return s.branchCode == s.branchCode && s.branchName == s.branchName;
+  }
 }

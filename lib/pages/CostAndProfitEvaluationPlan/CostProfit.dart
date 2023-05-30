@@ -13,7 +13,6 @@ class CostProfit extends StatefulWidget {
 }
 
 class _CostProfit extends State<CostProfit> {
-  final InternetConnectivity internetConnectivity = InternetConnectivity();
   final _ProductID = TextEditingController();
 
   String dropdownvalue = 'Item 1';
@@ -29,18 +28,10 @@ class _CostProfit extends State<CostProfit> {
   @override
   void initState() {
     super.initState();
-
-    internetConnectivity.startMonitoringConnectivity((isConnected) {
-      if (!isConnected) {
-        FormShowDialog.showAlertDialog(
-            context, 'ຂໍອະໄພ! ມີບັນຫາໃນການເຊື່ອມຕໍ່');
-      }
-    });
   }
 
   @override
   void dispose() {
-    internetConnectivity.stopMonitoringConnectivity();
     super.dispose();
   }
 

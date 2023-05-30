@@ -24,4 +24,16 @@ class pathContact {
   String getRepoPathChangePassword() {
     return _repoPathChangePassowrd;
   }
+
+  String _repoPathBranch =
+      'https://souvanny.la/costing/CostingAPI/system/MasterBranch';
+  String getRepoPathBranch() {
+    return _repoPathBranch;
+  }
+
+  String _repoPathProductCategory =
+      'https://souvanny.la/costing/CostingAPI/system/MasterProductCategory';
+  String getRepoPathProductCategory() {
+    return _repoPathProductCategory;
+  }
 }

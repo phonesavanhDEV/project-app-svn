@@ -37,12 +37,12 @@ class _LoginPageState extends State<LoginPage> {
     //   DeviceOrientation.portraitUp,
     //   DeviceOrientation.portraitDown,
     // ]);
-    internetConnectivity.startMonitoringConnectivity((isConnected) {
-      if (!isConnected) {
-        FormShowDialog.showAlertDialog(
-            context, 'ຂໍອະໄພ! ມີບັນຫາໃນການເຊື່ອມຕໍ່');
-      }
-    });
+    // internetConnectivity.startMonitoringConnectivity((isConnected) {
+    //   if (!isConnected) {
+    //     FormShowDialog.showAlertDialog(
+    //         context, 'ຂໍອະໄພ! ມີບັນຫາໃນການເຊື່ອມຕໍ່');
+    //   }
+    // });
   }
 
   @override

@@ -31,8 +31,6 @@ class _RegisterPageState extends State<RegisterPage> {
   bool _obscureText2 = true;
   String _passwordStrength = '';
 
-  final InternetConnectivity internetConnectivity = InternetConnectivity();
-
   void _updatePasswordStrength(String password) {
     setState(() {
       if (password.length >= 8 &&
@@ -148,13 +146,6 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   void initState() {
     super.initState();
-
-    internetConnectivity.startMonitoringConnectivity((isConnected) {
-      if (!isConnected) {
-        FormShowDialog.showAlertDialog(
-            context, 'ຂໍອະໄພ! ມີບັນຫາໃນການເຊື່ອມຕໍ່');
-      }
-    });
   }
 
   @override
@@ -166,9 +157,6 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: CustomAppBar(
-      //   title: 'ສ້າງບັນຊີໃໝ່',
-      // ),
       appBar: AppBar(
         title: Text(
           'ສ້າງບັນຊີໃໝ່',

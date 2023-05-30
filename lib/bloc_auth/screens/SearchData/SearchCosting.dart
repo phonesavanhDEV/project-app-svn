@@ -1,13 +1,18 @@
-import 'dart:convert';
-
-import 'package:dio/dio.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:svn_costing_profit/bloc_auth/screens/SearchData/widgetClass/WidgetBranch.dart';
 
 import '../../../contact/HaxColors.dart';
+import '../../../path/pathContact.dart';
 import '../../models/UserModel.dart';
-import 'WidgetCategory.dart';
+import '../../models/modelBranch/branchModel.dart';
+import '../../models/modelProductCategory/productCategoryModel.dart';
+import 'widgetClass/WidgetCategory.dart';
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
+
+part 'PartSearch.dart';
 
 class SearchCosting extends StatefulWidget {
   @override
@@ -16,7 +21,6 @@ class SearchCosting extends StatefulWidget {
 
 class _SearchCostingState extends State<SearchCosting> {
   final _formKey = GlobalKey<FormState>();
-  final _popupCustomValidationKey = GlobalKey<DropdownSearchState<int>>();
 
   final _plusIDController = TextEditingController();
   final _productIDController = TextEditingController();
@@ -86,7 +90,7 @@ class _SearchCostingState extends State<SearchCosting> {
               Row(
                 children: [
                   Expanded(
-                    child: DropdownSearch<UserModel>(
+                    child: DropdownSearch<ProductCategoryModel>(
                       dropdownDecoratorProps: DropDownDecoratorProps(
                         dropdownSearchDecoration: InputDecoration(
                           hintText: "ໝວດສິນຄ້າ",
@@ -95,18 +99,18 @@ class _SearchCostingState extends State<SearchCosting> {
                           ),
                         ),
                       ),
-                      asyncItems: (filter) => getData(filter),
+                      clearButtonProps: ClearButtonProps(isVisible: true),
+                      asyncItems: (filter) => getDataCategory(filter),
                       compareFn: (i, s) => i.isEqual(s),
-                      itemAsString: (UserModel u) => u.name,
+                      itemAsString: (ProductCategoryModel u) => u.CategoryCode,
                       popupProps: PopupPropsMultiSelection.dialog(
-                          isFilterOnline: true,
-                          showSelectedItems: true,
-                          showSearchBox: true,
-                          itemBuilder: (context, item, isSelected) =>
-                              CategoryProduct(
-                                item: item,
-                                isSelected: isSelected,
-                              )),
+                        isFilterOnline: true,
+                        showSearchBox: true,
+                        itemBuilder: (context, item, isSelected) =>
+                            CategoryProduct(
+                          item: item,
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -124,7 +128,7 @@ class _SearchCostingState extends State<SearchCosting> {
                           ),
                         ),
                       ),
-                      // asyncItems: (filter) => getData(filter),
+                      //asyncItems: (filter) => getData(filter),
                       compareFn: (i, s) => i.isEqual(s),
                       //itemAsString: (UserModel u) => u.name,
                       popupProps: PopupPropsMultiSelection.dialog(
@@ -219,7 +223,7 @@ class _SearchCostingState extends State<SearchCosting> {
               Row(
                 children: [
                   Expanded(
-                    child: DropdownSearch<UserModel>(
+                    child: DropdownSearch<BranchModel>(
                       dropdownDecoratorProps: DropDownDecoratorProps(
                         dropdownSearchDecoration: InputDecoration(
                           hintText: "ສາຂາ",
@@ -228,14 +232,15 @@ class _SearchCostingState extends State<SearchCosting> {
                           ),
                         ),
                       ),
-                      //asyncItems: (filter) => getData(filter),
+                      asyncItems: (filter) => getData(filter),
                       compareFn: (i, s) => i.isEqual(s),
-                      //itemAsString: (UserModel u) => u.name,
+                      itemAsString: (BranchModel u) => u.branchName,
                       popupProps: PopupPropsMultiSelection.dialog(
                         isFilterOnline: true,
-                        showSelectedItems: true,
                         showSearchBox: true,
-                        // itemBuilder: _customPopupItemBuilderExample2,
+                        itemBuilder: (context, item, isSelected) => BranchData(
+                          item: item,
+                        ),
                       ),
                     ),
                   ),
@@ -272,34 +277,4 @@ class _SearchCostingState extends State<SearchCosting> {
       ),
     );
   }
-
-  Future<List<UserModel>> getData(filter) async {
-    var response = await Dio().get(
-      "https://souvanny.la/costing/CostingAPI/system/MasterBranch",
-      queryParameters: {"filter": filter},
-    );
-
-    final data = response.data;
-    if (data != null) {
-      return UserModel.fromJsonList(data);
-    }
-
-    return [];
-  }
-
-  // Future<List<UserModel>> getData(filter) async {
-  //   var response = await http.get(
-  //     Uri.parse("https://souvanny.la/costing/CostingAPI/system/iLoaddata"),
-  //     queryParameters: {"filter": filter},
-  //   );
-
-  //   if (response.statusCode == 200) {
-  //     final data = json.decode(response.body);
-  //     if (data != null) {
-  //       return UserModel.fromJsonList(data);
-  //     }
-  //   }
-
-  //   return [];
-  // }
 }

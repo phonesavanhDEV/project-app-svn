@@ -10,23 +10,20 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  final InternetConnectivity internetConnectivity = InternetConnectivity();
-
   @override
   void initState() {
     super.initState();
 
-    internetConnectivity.startMonitoringConnectivity((isConnected) {
-      if (!isConnected) {
-        FormShowDialog.showAlertDialog(
-            context, 'ຂໍອະໄພ! ມີບັນຫາໃນການເຊື່ອມຕໍ່');
-      }
-    });
+    // internetConnectivity.startMonitoringConnectivity((isConnected) {
+    //   if (!isConnected) {
+    //     FormShowDialog.showAlertDialog(
+    //         context, 'ຂໍອະໄພ! ມີບັນຫາໃນການເຊື່ອມຕໍ່');
+    //   }
+    // });
   }
 
   @override
   void dispose() {
-    internetConnectivity.stopMonitoringConnectivity();
     super.dispose();
   }
 
@@ -69,7 +66,7 @@ class _DashboardState extends State<Dashboard> {
                       ],
                     ),
                     onPressed: () =>
-                        Navigator.pushNamed(context, '/costprofit'),
+                        Navigator.pushNamed(context, '/searchCosting'),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                       side: BorderSide(
