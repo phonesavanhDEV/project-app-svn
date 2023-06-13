@@ -116,3 +116,61 @@ Future<List<ProductBrandModel>> getDataBrand(String? filter) async {
     return [];
   }
 }
+
+Future<List<ProductTypeModel>> getDataType(String? filter) async {
+  try {
+    var url = Uri.parse(pathContact().getRepoPathProductType());
+
+    var response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      List<ProductTypeModel> productType = [];
+      var jsonData = jsonDecode(response.body);
+      for (var typeData in jsonData) {
+        ProductTypeModel type = ProductTypeModel.fromJson(typeData);
+        if (filter == null ||
+            type.productTypeCode.contains(filter) ||
+            type.productTypeName.contains(filter)) {
+          productType.add(type);
+        }
+      }
+
+      return productType;
+    } else {
+      print('HTTP request failed with status code: ${response.statusCode}');
+      return [];
+    }
+  } catch (error) {
+    print('Error retrieving data: $error');
+    return [];
+  }
+}
+
+Future<List<VendorModel>> getDataVendor(String? filter) async {
+  try {
+    var url = Uri.parse(pathContact().getRepoPathVendor());
+
+    var response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      List<VendorModel> vendors = [];
+      var jsonData = jsonDecode(response.body);
+      for (var vendorData in jsonData) {
+        VendorModel vendor = VendorModel.fromJson(vendorData);
+        if (filter == null ||
+            vendor.VendorCode.contains(filter) ||
+            vendor.VendorName.contains(filter)) {
+          vendors.add(vendor);
+        }
+      }
+
+      return vendors;
+    } else {
+      print('HTTP request failed with status code: ${response.statusCode}');
+      return [];
+    }
+  } catch (error) {
+    print('Error retrieving data: $error');
+    return [];
+  }
+}

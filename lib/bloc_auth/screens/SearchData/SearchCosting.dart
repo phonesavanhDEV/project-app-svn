@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:svn_costing_profit/bloc_auth/screens/SearchData/widgetClass/WidgetBranch.dart';
 import 'package:svn_costing_profit/bloc_auth/screens/SearchData/widgetClass/WidgetBrand.dart';
 import 'package:svn_costing_profit/bloc_auth/screens/SearchData/widgetClass/WidgetGroup.dart';
+import 'package:svn_costing_profit/bloc_auth/screens/SearchData/widgetClass/WidgetVendor.dart';
 
 import '../../../contact/HaxColors.dart';
 import '../../../path/pathContact.dart';
@@ -11,10 +12,14 @@ import '../../models/modelBranch/branchModel.dart';
 import '../../models/modelProductBrand/productBrandModel.dart';
 import '../../models/modelProductCategory/productCategoryModel.dart';
 import '../../models/modelProductGroup/productGroupModel.dart';
+import '../../models/modelProductType/productTypeModel.dart';
+import '../../models/modelVendor/VendorModel.dart';
 import 'widgetClass/WidgetCategory.dart';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+
+import 'widgetClass/WidgetType.dart';
 
 part 'PartSearch.dart';
 
@@ -182,7 +187,7 @@ class _SearchCostingState extends State<SearchCosting> {
               Row(
                 children: [
                   Expanded(
-                    child: DropdownSearch<UserModel>(
+                    child: DropdownSearch<ProductTypeModel>(
                       dropdownDecoratorProps: DropDownDecoratorProps(
                         dropdownSearchDecoration: InputDecoration(
                           hintText: "ປະເພດສິນຄ້າ",
@@ -191,14 +196,17 @@ class _SearchCostingState extends State<SearchCosting> {
                           ),
                         ),
                       ),
-                      //asyncItems: (filter) => getData(filter),
+                      clearButtonProps: ClearButtonProps(isVisible: true),
+                      asyncItems: (filter) => getDataType(filter),
                       compareFn: (i, s) => i.isEqual(s),
-                      //itemAsString: (UserModel u) => u.name,
+                      itemAsString: (ProductTypeModel u) => u.productTypeName,
                       popupProps: PopupPropsMultiSelection.dialog(
                         isFilterOnline: true,
                         showSelectedItems: true,
                         showSearchBox: true,
-                        //itemBuilder: _customPopupItemBuilderExample2,
+                        itemBuilder: (context, item, isSelected) => TypeProduct(
+                          item: item,
+                        ),
                       ),
                     ),
                   ),
@@ -208,7 +216,7 @@ class _SearchCostingState extends State<SearchCosting> {
               Row(
                 children: [
                   Expanded(
-                    child: DropdownSearch<UserModel>(
+                    child: DropdownSearch<VendorModel>(
                       dropdownDecoratorProps: DropDownDecoratorProps(
                         dropdownSearchDecoration: InputDecoration(
                           hintText: "ຜູ້ສະໜອງ",
@@ -217,14 +225,18 @@ class _SearchCostingState extends State<SearchCosting> {
                           ),
                         ),
                       ),
-                      //asyncItems: (filter) => getData(filter),
+                      clearButtonProps: ClearButtonProps(isVisible: true),
+                      asyncItems: (filter) => getDataVendor(filter),
                       compareFn: (i, s) => i.isEqual(s),
-                      //itemAsString: (UserModel u) => u.name,
+                      itemAsString: (VendorModel u) => u.VendorCode,
                       popupProps: PopupPropsMultiSelection.dialog(
                         isFilterOnline: true,
                         showSelectedItems: true,
                         showSearchBox: true,
-                        //itemBuilder: _customPopupItemBuilderExample2,
+                        itemBuilder: (context, item, isSelected) =>
+                            VendorMaster(
+                          item: item,
+                        ),
                       ),
                     ),
                   ),
@@ -243,6 +255,7 @@ class _SearchCostingState extends State<SearchCosting> {
                           ),
                         ),
                       ),
+                      clearButtonProps: ClearButtonProps(isVisible: true),
                       asyncItems: (filter) => getData(filter),
                       compareFn: (i, s) => i.isEqual(s),
                       itemAsString: (BranchModel u) => u.branchName,
