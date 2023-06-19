@@ -1,5 +1,6 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:svn_costing_profit/bloc_auth/screens/SearchData/widgetClass/WidgetBranch.dart';
 import 'package:svn_costing_profit/bloc_auth/screens/SearchData/widgetClass/WidgetBrand.dart';
 import 'package:svn_costing_profit/bloc_auth/screens/SearchData/widgetClass/WidgetGroup.dart';
@@ -14,6 +15,7 @@ import '../../models/modelProductCategory/productCategoryModel.dart';
 import '../../models/modelProductGroup/productGroupModel.dart';
 import '../../models/modelProductType/productTypeModel.dart';
 import '../../models/modelVendor/VendorModel.dart';
+import '../../searchdata/SearchDataCubit.dart';
 import 'widgetClass/WidgetCategory.dart';
 import 'dart:convert';
 
@@ -33,6 +35,13 @@ class _SearchCostingState extends State<SearchCosting> {
 
   final _plusIDController = TextEditingController();
   final _productIDController = TextEditingController();
+
+  ProductCategoryModel? _selectedProductCategory;
+  ProductGroupModel? _selectedProductGroup;
+  ProductBrandModel? _selectProductBrand;
+  ProductTypeModel? _selectProductType;
+  VendorModel? _selectVendor;
+  BranchModel? _selectBranch;
 
   @override
   void dispose() {
@@ -100,6 +109,11 @@ class _SearchCostingState extends State<SearchCosting> {
                 children: [
                   Expanded(
                     child: DropdownSearch<ProductCategoryModel>(
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedProductCategory = value!;
+                        });
+                      },
                       dropdownDecoratorProps: DropDownDecoratorProps(
                         dropdownSearchDecoration: InputDecoration(
                           hintText: "ໝວດສິນຄ້າ",
@@ -129,6 +143,11 @@ class _SearchCostingState extends State<SearchCosting> {
                 children: [
                   Expanded(
                     child: DropdownSearch<ProductGroupModel>(
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedProductGroup = value!;
+                        });
+                      },
                       dropdownDecoratorProps: DropDownDecoratorProps(
                         dropdownSearchDecoration: InputDecoration(
                           hintText: "ກຸ່ມສິນຄ້າ",
@@ -158,6 +177,11 @@ class _SearchCostingState extends State<SearchCosting> {
                 children: [
                   Expanded(
                     child: DropdownSearch<ProductBrandModel>(
+                      onChanged: (value) {
+                        setState(() {
+                          _selectProductBrand = value!;
+                        });
+                      },
                       dropdownDecoratorProps: DropDownDecoratorProps(
                         dropdownSearchDecoration: InputDecoration(
                           hintText: "ຍີ່ຫໍ້ສິນຄ້າ",
@@ -188,6 +212,11 @@ class _SearchCostingState extends State<SearchCosting> {
                 children: [
                   Expanded(
                     child: DropdownSearch<ProductTypeModel>(
+                      onChanged: (value) {
+                        setState(() {
+                          _selectProductType = value!;
+                        });
+                      },
                       dropdownDecoratorProps: DropDownDecoratorProps(
                         dropdownSearchDecoration: InputDecoration(
                           hintText: "ປະເພດສິນຄ້າ",
@@ -217,6 +246,11 @@ class _SearchCostingState extends State<SearchCosting> {
                 children: [
                   Expanded(
                     child: DropdownSearch<VendorModel>(
+                      onChanged: (value) {
+                        setState(() {
+                          _selectVendor = value!;
+                        });
+                      },
                       dropdownDecoratorProps: DropDownDecoratorProps(
                         dropdownSearchDecoration: InputDecoration(
                           hintText: "ຜູ້ສະໜອງ",
@@ -247,6 +281,11 @@ class _SearchCostingState extends State<SearchCosting> {
                 children: [
                   Expanded(
                     child: DropdownSearch<BranchModel>(
+                      onChanged: (value) {
+                        setState(() {
+                          _selectBranch = value!;
+                        });
+                      },
                       dropdownDecoratorProps: DropDownDecoratorProps(
                         dropdownSearchDecoration: InputDecoration(
                           hintText: "ສາຂາ",
@@ -276,7 +315,29 @@ class _SearchCostingState extends State<SearchCosting> {
                 height: 55,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    // Navigator.pop(context);
+                    final pluscode = _plusIDController.text.trim();
+                    final productcode = _productIDController.text.trim();
+                    final productcategorycode =
+                        _selectedProductCategory?.CategoryCode ?? '';
+                    final productgroupcode =
+                        _selectedProductGroup?.productGroupCode ?? '';
+                    final productbrandname =
+                        _selectProductBrand?.BrandName ?? '';
+                    final producttypename =
+                        _selectProductType?.productTypeName ?? '';
+                    final vendorcode = _selectVendor?.VendorCode ?? '';
+                    final branchname = _selectBranch?.branchName ?? '';
+
+                    context.read<SearchDataCubit>().searchData(
+                        pluscode,
+                        productcode,
+                        productcategorycode,
+                        productgroupcode,
+                        productbrandname,
+                        producttypename,
+                        vendorcode,
+                        branchname);
                   },
                   style: ElevatedButton.styleFrom(
                     primary: HaxColor.colorOrange,

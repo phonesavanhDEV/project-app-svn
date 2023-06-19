@@ -13,7 +13,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     emit(SignUpLoading());
 
     final response = await http.post(
-      Uri.parse(contactPath.getRepoPathSignUP()),
+      Uri.parse(contactPath.postRepoPathSignUP()),
       body: {
         'username': username,
         'userpassword': userpassword,

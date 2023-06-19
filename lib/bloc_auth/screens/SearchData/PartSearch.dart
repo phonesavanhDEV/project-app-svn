@@ -163,7 +163,6 @@ Future<List<VendorModel>> getDataVendor(String? filter) async {
           vendors.add(vendor);
         }
       }
-
       return vendors;
     } else {
       print('HTTP request failed with status code: ${response.statusCode}');

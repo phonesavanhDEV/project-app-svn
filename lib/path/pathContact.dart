@@ -10,12 +10,12 @@ class pathContact {
   }
 
   String _repoPathSignUp = 'https://souvanny.la/costing/CostingAPI/iSignUp';
-  String getRepoPathSignUP() {
+  String postRepoPathSignUP() {
     return _repoPathSignUp;
   }
 
   String _repoPathUser = 'https://souvanny.la/costing/CostingAPI/iUser';
-  String getRepoPathUser() {
+  String postRepoPathUser() {
     return _repoPathUser;
   }
 
@@ -59,5 +59,11 @@ class pathContact {
       'https://souvanny.la/costing/CostingAPI/system/MasterVendor';
   String getRepoPathVendor() {
     return _repoPathVendor;
+  }
+
+  String _repoPathSearch =
+      'https://souvanny.la/costing/CostingAPI/system/iSeachData';
+  String postRepoPathSearch() {
+    return _repoPathSearch;
   }
 }

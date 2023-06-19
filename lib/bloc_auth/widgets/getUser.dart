@@ -8,7 +8,7 @@ import '../models/modelsUser/User.dart';
 Future<User> fetchUserData(String username) async {
   final pathContact contactPath = pathContact();
   final response = await http.post(
-    Uri.parse(contactPath.getRepoPathUser()),
+    Uri.parse(contactPath.postRepoPathUser()),
     body: {'username': username},
   );
 
